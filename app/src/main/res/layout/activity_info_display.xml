@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -20,40 +20,70 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_selection"
-        android:id="@+id/textView"
+        android:id="@+id/textSelection"
         android:layout_gravity="left|center_horizontal" />
 
     <Spinner
         android:id="@+id/spinnerRole"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/textSelection"/>
     <!--Student-->
-    <Spinner
-        android:id="@+id/spinnerFaculty"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:visibility="invisible"/>
-    <Spinner
-        android:id="@+id/spinnerGeodesySpecialization"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:visibility="invisible"/>
-    <Spinner
-        android:id="@+id/spinnerMathSpecialization"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:visibility="invisible"/>
+        android:layout_below="@+id/spinnerRole"
+        android:id="@+id/topLayout">
+        <Spinner
+            android:id="@+id/spinnerFaculty"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible" />
+
+        <Spinner
+            android:id="@+id/spinnerGeodesySpecialization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:visibility="invisible"/>
+        <Spinner
+            android:id="@+id/spinnerMathSpecialization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible"/>
+    </LinearLayout>
     <!--Professor-->
-    <Spinner
-        android:id="@+id/spinnerRooms"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/profLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:visibility="invisible"/>
+        android:layout_below="@+id/spinnerRole">
+        <Spinner
+            android:id="@+id/spinnerRooms"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textOutput"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLayout"
+        android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/textSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 
-</LinearLayout>
+
+</RelativeLayout>
