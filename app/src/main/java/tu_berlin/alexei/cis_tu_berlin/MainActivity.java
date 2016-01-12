@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // If WiFi is connected, MacAddress will be obtained and map will be shown
                 checkGPSStatus();
-                
+
                 getPos(mMapView);
                 int index = getIndex();
                 String wifiMac = TUUtils.getBBSID(getApplicationContext());
