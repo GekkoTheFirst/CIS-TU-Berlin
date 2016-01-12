@@ -1,6 +1,6 @@
 <resources>
     <!--MainActivity-->
-    <string name="app_name">CIS-TU-Berlin</string>
+    <string name="app_name">TU-CIS</string>
     <string name="info_btn">Info available</string>
     <string name="dec_vertical_dots">More</string>
     <!--InfoDisplayActivity-->
