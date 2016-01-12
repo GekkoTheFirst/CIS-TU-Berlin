@@ -2,10 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:my_app="http://schemas.android.com/apk/res-auto">
 
+    <group>
+    <item
+        android:id="@+id/find"
+        android:title="@string/ttl_find"
+        android:icon="@drawable/magnify"/>
     <item
         android:id="@+id/legend"
         android:title="@string/ttl_legend" />
-
+    </group>
     <group android:title="@string/baseMaps"
             android:checkableBehavior="single">
         <item
@@ -25,7 +30,5 @@
             my_app:showAsAction="never"
             android:title="@string/osmMenu" />
     </group>
-
-
 
 </menu>

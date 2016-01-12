@@ -1,9 +1,13 @@
 <resources>
+    <!--MainActivity-->
     <string name="app_name">CIS-TU-Berlin</string>
     <string name="info_btn">Info available</string>
     <string name="dec_vertical_dots">More</string>
-    <string name="ttl_legend">Legend</string>
+    <!--InfoDisplayActivity-->
     <string name="main_selection">Please select:</string>
+    <!--Menu-->
+    <string name="ttl_legend">Legend</string>
+    <string name="ttl_find">Find</string>
    <!-- WiFi Dialog-->
     <string name="dialog_title">Information</string>
     <string name="dialog_wifi_text">Please Turn ON WiFi. Connect to \"eduroam\" network.</string>
