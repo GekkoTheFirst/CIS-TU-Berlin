@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -235,14 +236,15 @@ public class MainActivity extends AppCompatActivity {
 
     // OptionMenu
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu);
 
         // Get the basemap switching menu items.
-        mStreetsMenuItem = menu.getItem(1);
+        mStreetsMenuItem = menu.getItem(2);
         mStreetsMenuItem.setChecked(true);
-        mTopoMenuItem = menu.getItem(2);
-        mHybridBasemapItem = menu.getItem(3);
-        mOSMBasemapItem = menu.getItem(4);
+        mTopoMenuItem = menu.getItem(3);
+        mHybridBasemapItem = menu.getItem(4);
+        mOSMBasemapItem = menu.getItem(5);
         return true;
     }
 
