@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">CIS-TU-Berlin</string>
+    <string name="info_btn">Info available</string>
+    <string name="dec_vertical_dots">More</string>
+    <string name="ttl_legend">Legend</string>
+    <string name="main_selection">Please select:</string>
+   <!-- WiFi Dialog-->
+    <string name="dialog_title">Information</string>
+    <string name="dialog_wifi_text">Please Turn ON WiFi. Connect to \"eduroam\" network.</string>
+    <string name="dialog_wifi_on">Open</string>
+    <string name="dialong_wifi_off">Cancel</string>
+    <!-- GPS Dialog-->
+    <string name="dialog_gps_text">Please Turn ON GPS</string>
+    <string name="dialog_gps_on">Open</string>
+    <string name="dialong_gps_off">Cancel</string>
+    <!-- basemap menu items -->
+    <string name="baseMaps">Base Maps</string>
+    <string name="streetMapMenu">Streets</string>
+    <string name="topoMenu">Topographic</string>
+    <string name="hybridMenu">Hybrid</string>
+    <string name="osmMenu">OpenStreetMap</string>
+    <!-- dynamic map service url -->
+    <string name="map_service_url">http://quader.igg.tu-berlin.de:6080/arcgis/rest/services/Vasko/NewMap_102_1108/MapServer</string>
+    <string name="text">TextView</string>
+</resources>

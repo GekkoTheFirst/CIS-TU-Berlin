@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:my_app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/legend"
+        android:title="@string/ttl_legend" />
+
+    <group android:title="@string/baseMaps"
+            android:checkableBehavior="single">
+        <item
+            android:id="@+id/World_Street_Map"
+            my_app:showAsAction="never"
+            android:title="@string/streetMapMenu" />
+        <item
+            android:id="@+id/World_Topo"
+            my_app:showAsAction="never"
+            android:title="@string/topoMenu" />
+        <item
+            android:id="@+id/World_Hybrid"
+            my_app:showAsAction="never"
+            android:title="@string/hybridMenu" />
+        <item
+            android:id="@+id/OSM"
+            my_app:showAsAction="never"
+            android:title="@string/osmMenu" />
+    </group>
+
+
+
+</menu>
