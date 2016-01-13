@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:my_app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item  android:id="@+id/find"
+    <!--It won't be implemented because no time and in the absence of method
+        <item  android:id="@+id/find"
            android:title="@string/ttl_find"
            android:icon="@drawable/magnify"
-           my_app:showAsAction="ifRoom"/>
+           app:showAsAction="ifRoom"/>-->
 
+    <!--<item  android:id="@+id/dots"
+        android:title="D"
+        android:icon="@drawable/dots_vertical_w"
+        app:showAsAction="always">-->
     <group>
         <item  android:id="@+id/legend"
             android:title="@string/ttl_legend"/>
@@ -14,21 +19,22 @@
             android:checkableBehavior="single">
             <item
                 android:id="@+id/World_Street_Map"
-                my_app:showAsAction="never"
+                app:showAsAction="never"
                 android:title="@string/streetMapMenu" />
             <item
                 android:id="@+id/World_Topo"
-                my_app:showAsAction="never"
+                app:showAsAction="never"
                 android:title="@string/topoMenu" />
             <item
                 android:id="@+id/World_Hybrid"
-                my_app:showAsAction="never"
+                app:showAsAction="never"
                 android:title="@string/hybridMenu" />
             <item
                 android:id="@+id/OSM"
-                my_app:showAsAction="never"
+                app:showAsAction="never"
                 android:title="@string/osmMenu" />
         </group>
     </group>
+    <!--</item>-->
 
 </menu>
