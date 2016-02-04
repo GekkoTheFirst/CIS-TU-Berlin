@@ -1,0 +1,16 @@
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/checkedTextRoomRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:textColor="@color/whiteMain"
+    android:textSize="22sp"
+    android:textStyle="bold"
+    android:background="@color/redMain"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:groupIndicator="@drawable/group_chevron_indicator">
+</CheckedTextView>
