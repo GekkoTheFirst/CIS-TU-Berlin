@@ -1,240 +1,311 @@
 package tu_berlin.alexei.cis_tu_berlin;
 
-import android.support.v7.app.AppCompatActivity;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.GradientDrawable;
+import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 
 public class InfoDisplayActivity extends AppCompatActivity {
-    private Spinner spinnerWho, spinnerFaculty, spinnerGeodesySpecialization, spinnerMathSpecialization, spinnerRooms;
-    private String[] itemsWho;
+
+    private static String CRITERION;
+    private int indexZone = MainActivity.getINDEX();
+    private int floorNumber = MainActivity.getFLOOR();
+    private Calendar calendar = Calendar.getInstance();
+    private int day = calendar.get(Calendar.DAY_OF_WEEK);
+    private int numberOfAcademician;
+
+    private boolean clicked = true;
+    private GetInfoLectureChain infoLectureChain = new GetInfoLectureChain();
+    private GetInfoPersonChain infoPersonChain = new GetInfoPersonChain();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_display);
 
-        String output = TUUtils.getBBSID(getApplicationContext());
-        double longitude = LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext());
-        double latitude = LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext());
+        final Button btn_search = (Button) findViewById(R.id.btn_first_element);
+        final ObjectAnimator mover = ObjectAnimator.ofFloat(btn_search, "translationY", 0, 110);
+        final ObjectAnimator moverBack = ObjectAnimator.ofFloat(btn_search, "translationY", 110, 0);
 
-        TextView itemLoco = (TextView) findViewById(R.id.textLoco);
-        itemLoco.setText("BBSID: " + output + " Lon: " + longitude + "Lat: " + latitude);
+        final ExpandableListView expListView = (ExpandableListView) findViewById(R.id.expandable_list_view);
 
-        spinnerWho = (Spinner) findViewById(R.id.spinnerRole);
-        itemsWho = new String[]{"Student", "Pedagogue"};
-        ArrayAdapter<String> adapterWho = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, itemsWho);
-        spinnerWho.setAdapter(adapterWho);
-        spinnerWho.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-    }
+        // Spinners Chevron
+        final ImageView chevron1 = (ImageView) findViewById(R.id.spinner_chevron_main);
+        chevron1.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
 
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        int index = 0;
-        switch (position) {
-            case 1:
-                // Spinner if student
-                spinnerFaculty = (Spinner) findViewById(R.id.spinnerFaculty);
-                String[] itemsFaculty = new String[]{"Msc Geodesy ang GIS", "Mathematical"};
-                ArrayAdapter<String> adapterFaculty = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, itemsFaculty);
-                spinnerFaculty.setAdapter(adapterFaculty);
-                spinnerFaculty.setVisibility(View.VISIBLE);
-                index = 1;
-                break;
-            case 2:
-                // Spinner if Pedagogue (Professor)
-                spinnerRooms = (Spinner) findViewById(R.id.spinnerRooms);
-                String[] itemsRooms = new String[]{"", ""};
-                ArrayAdapter<String> adapterRooms = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, itemsRooms);
-                spinnerRooms.setAdapter(adapterRooms);
-                spinnerFaculty.setVisibility(View.VISIBLE);
-                index = 2;
-                break;
-        }
-        // Second switch
-        specializationSwitch(index);
-        // Third switch
-        String index2 = specializationSwitch(index);
-        // Forth switch
-        //int index3 = semesterSwitch();
-        lectureSwitch(index2);
-    }
+        final ImageView chevron2 = (ImageView) findViewById(R.id.spinner_chevron2);
+        chevron2.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
 
-    public String specializationSwitch(int i){
-        String index = "";
-        switch (i){
-            case 1:
-                spinnerGeodesySpecialization = (Spinner) findViewById(R.id.spinnerGeodesySpecialization);
-                String[] itemsGeodesySpecialization = new String[]{"GIS", "EGA", "SGN", "CV"};
-                ArrayAdapter<String> adapterGeodesySpecialization = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, itemsGeodesySpecialization);
-                spinnerGeodesySpecialization.setAdapter(adapterGeodesySpecialization);
-                spinnerGeodesySpecialization.setVisibility(View.VISIBLE);
-                break;
-            case 2:
-                spinnerMathSpecialization = (Spinner) findViewById(R.id.spinnerMathSpecialization);
-                String[] itemsMathSpecialization = new String[]{"Algebra", "History", "Theory"};
-                ArrayAdapter<String> adapterMathSpecialization = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, itemsMathSpecialization);
-                spinnerMathSpecialization.setAdapter(adapterMathSpecialization);
-                spinnerMathSpecialization.setVisibility(View.VISIBLE);
-                break;
-        }
+        // First Criteria
+        final Spinner spinnerMain = (Spinner) findViewById(R.id.spinnerMain);
+        String[] itemsRow_1 = new String[]{"Select Criteria:", "Student", "Academicians"};
+        ArrayAdapter<String> adapterOne = new ArrayAdapter<String>(this, R.layout.spinner_layout, itemsRow_1);
+        spinnerMain.setAdapter(adapterOne);
 
-        String textGeodesySelect = spinnerGeodesySpecialization.getSelectedItem().toString();
-        if(textGeodesySelect.equals("GIS")){
-            index = "GIS";
-        } else if(textGeodesySelect.equals("EGA")){
-            index = "EGA";
-        } else if(textGeodesySelect.equals("SGN")){
-            index = "SGN";
-        } else {
-            index = "CV";
-        }
+        // Second Criteria
+        final Spinner spinnerSecondOne = (Spinner) findViewById(R.id.spinnerProf_2_1);
+        String[] itemsRow_2_1 = new String[]{"Select Criteria:", "Lectures by room", "Lectures by today", "Academicians by room"};
+        final Spinner spinnerSecondTwo = (Spinner) findViewById(R.id.spinnerProf_2_2);
+        String[] itemsRow_2_2 = new String[]{"Select Criteria:", "Lectures by room", "Assistants by room", "PhD by room"};
 
-        String textMathSelect = spinnerMathSpecialization.getSelectedItem().toString();
-        if(textMathSelect.equals("Algebra")){
-            index = "Algebra";
-        } else if(textMathSelect.equals("History")){
-            index = "History";
-        } else {
-            index = "Theory";
-        }
+        ArrayAdapter<String> adapterTwoOne = new ArrayAdapter<String>(this, R.layout.spinner_layout, itemsRow_2_1);
+        spinnerSecondOne.setAdapter(adapterTwoOne);
+        ArrayAdapter<String> adapterTwoTwo = new ArrayAdapter<String>(this, R.layout.spinner_layout, itemsRow_2_2);
+        spinnerSecondTwo.setAdapter(adapterTwoTwo);
 
-        return index;
-    }
+        spinnerMain.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 1:
+                        CRITERION = "STUDENT";
+                        spinnerMain.setBackground(backgroundWithBorder(getResources().getColor(R.color.greenCheck))); //setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+                        spinnerSecondTwo.setVisibility(View.GONE);
+                        spinnerSecondOne.setVisibility(View.VISIBLE);
+                        chevron2.setVisibility(View.VISIBLE);
+                        mover.start();
 
-  /*  public int semesterSwitch(int i){
-        int index = 0;
-        switch(i){
-            case 1:
-                index = 1; break;
-            case 2:
-                index = 2; break;
-            case 3:
-                index = 3; break;
-            case 4:
-                index = 4; break;
-        }
-        return index;
-    }*/
+                        if(expListView.getVisibility() == View.VISIBLE){
+                            expListView.setVisibility(View.GONE);
+                            clicked = true;
+                        }
 
-    public int lectureSwitch(String s){
-        int index = 0;
-        Calendar sCalendar = Calendar.getInstance();
-        int dayName = sCalendar.get(Calendar.DAY_OF_WEEK);
-        switch (s) {
-            case "GIS":
-                    if (Calendar.MONDAY == dayName) {
-                        // Order is important
-                        String[] lectureName = {"Geoinformation Technology"};
-                        String[] lecLinkName = {"172632"};
-                        String[] profName = {"Kada/", " Adolphi/", "  König"};
-                        String[] profLinkName = {"22664", "8658", "404"};
-                        setLectureProfSemester(lectureName, lecLinkName, profName, profLinkName);
-                    } else if (Calendar.TUESDAY == dayName) {
+                        Toast.makeText(parent.getContext(), " Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        CRITERION = "ACADEMICIAN";
+                        spinnerMain.setBackground(backgroundWithBorder(getResources().getColor(R.color.greenCheck)));
+                        spinnerSecondOne.setVisibility(View.GONE);
+                        spinnerSecondTwo.setVisibility(View.VISIBLE);
+                        chevron2.setVisibility(View.VISIBLE);
+                        mover.start();
+                        if(expListView.getVisibility() == View.VISIBLE){
+                            expListView.setVisibility(View.GONE);
+                            clicked = true;
+                        }
 
-                    } else if (Calendar.WEDNESDAY == dayName) {
+                        Toast.makeText(parent.getContext(), " Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        spinnerMain.setBackground(backgroundWithBorder(getResources().getColor(R.color.redDarkMain)));
 
-                    } else if (Calendar.THURSDAY == dayName) {
+                        break;
+                }
+            }
 
-                    } else if (Calendar.FRIDAY == dayName) {
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
+        spinnerSecondOne.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                switch (position) {
+                    case 1:
+                        CRITERION = "allDays";
+                        spinnerSecondOne.setBackground(backgroundWithBorder(getResources().getColor(R.color.greenCheck))); //setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+
+                        Toast.makeText(parent.getContext(), " Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        CRITERION = "specialDay";
+                        spinnerSecondOne.setBackground(backgroundWithBorder(getResources().getColor(R.color.greenCheck)));
+
+                        Toast.makeText(parent.getContext(), " Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        CRITERION = "allAcademicians";
+                        spinnerSecondOne.setBackground(backgroundWithBorder(getResources().getColor(R.color.greenCheck)));
+
+                        Toast.makeText(parent.getContext(), " Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        spinnerSecondOne.setBackground(backgroundWithBorder(getResources().getColor(R.color.redDarkMain)));
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        spinnerSecondTwo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                switch (position) {
+                    case 1:
+                        CRITERION = "allDays";
+                        spinnerSecondTwo.setBackground(backgroundWithBorder(getResources().getColor(R.color.greenCheck))); //setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+
+                        Toast.makeText(parent.getContext(), " Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        CRITERION = "academician";
+                        spinnerSecondTwo.setBackground(backgroundWithBorder(getResources().getColor(R.color.greenCheck))); //setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+
+                        Toast.makeText(parent.getContext(), " Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        CRITERION = "phd";
+                        spinnerSecondTwo.setBackground(backgroundWithBorder(getResources().getColor(R.color.greenCheck)));
+
+                        Toast.makeText(parent.getContext(), " Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        spinnerSecondTwo.setBackground(backgroundWithBorder(getResources().getColor(R.color.redDarkMain)));
+
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {        }
+        });
+
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplication(), "CLICK", Toast.LENGTH_LONG).show();
+                if(CRITERION == "allDays"){
+                    day = 0;
+                } else if (CRITERION == "allAcademicians"){
+                    numberOfAcademician = 100;
+                } else if (CRITERION == "academician"){
+                    numberOfAcademician = 10;
+                } else if (CRITERION == "phd"){
+                    numberOfAcademician = 0;
+                }
+                if(CRITERION != null){
+                    if(clicked) {
+                        moverBack.start();
+                        spinnerSecondOne.setVisibility(View.INVISIBLE);
+                        spinnerSecondTwo.setVisibility(View.INVISIBLE);
+                        chevron2.setVisibility(View.INVISIBLE);
+                        spinnerMain.setSelection(0);
+                        spinnerSecondOne.setSelection(0);
+                        spinnerSecondTwo.setSelection(0);
+                        // Main methods
+                        if(CRITERION == "allDays" || CRITERION == "specialDay") {
+                            getInfo(CRITERION, floorNumber, day, indexZone);
+                        } else {
+                            getInfo(CRITERION, floorNumber, numberOfAcademician, indexZone);
+                        }
+
+                        expListView.setVisibility(View.VISIBLE);
+                        clicked = false;
+                        CRITERION = null;
                     } else {
-
+                        Toast.makeText(getApplication(), "You've clicked, Reload window", Toast.LENGTH_SHORT).show();
                     }
-                break;
-            case "EGA": // EGA
-                if(Calendar.MONDAY == dayName){
 
-                }else if(Calendar.TUESDAY == dayName){
-
-                }else if(Calendar.WEDNESDAY == dayName){
-
-                }else if(Calendar.THURSDAY == dayName){
-
-                }else if(Calendar.FRIDAY == dayName){
-
-                }else{
-
+                } else {
+                    Toast.makeText(getApplication(), "Please Select Criteria", Toast.LENGTH_SHORT).show();
                 }
-                break;
-            case "SGN": // SGN
-                if(Calendar.MONDAY == dayName){
-                    String[] lectureName = {"Introduction to Satellite Geodesy"};
-                    String[] lecLinkName = {"173068"};
-                    String[] profName = {"Oberst/", " Flechtner/",  " Schuh"};
-                    String[] profLinkName ={"5522", "18331", "18247"};
-                            setLectureProfSemester(lectureName, lecLinkName, profName, profLinkName);
-                }else if(Calendar.TUESDAY == dayName){
-
-                }else if(Calendar.WEDNESDAY == dayName){
-
-                }else if(Calendar.THURSDAY == dayName){
-
-                }else if(Calendar.FRIDAY == dayName){
-
-                }else{
-
-                }
-                break;
-            case "CV": // CV
-                if(Calendar.MONDAY == dayName){
-
-                }else if(Calendar.TUESDAY == dayName){
-
-                }else if(Calendar.WEDNESDAY == dayName){
-
-                }else if(Calendar.THURSDAY == dayName){
-
-                }else if(Calendar.FRIDAY == dayName){
-
-                }else{
-
-                }
-                break;
-        }
-        return index;
+            }
+        });
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private void setLectureProfSemester(String[] lecture, String[] lectureLink, String[] prof, String[] profLink){
-        String[] lectureArray = lecture;
-        String[] lLink = lectureLink;
-        String[] profArray = prof;
-        String[] pLink = profLink;
-
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.textOutput);
-        setContentView(linearLayout);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        for(int ii = 0; ii < profArray.length; ii++ ){
-            TextView textLecture = (TextView) findViewById(R.id.textSchedule);
-            textLecture.setClickable(true);
-            textLecture.setMovementMethod(LinkMovementMethod.getInstance());
-            String finalLecLink = "<a href='http://www.lsf.tu-berlin.de/qisserver/servlet/de.his.servlet.RequestDispatcherServlet?state=verpublish&status=init&vmfile=no&publishid=" + lLink[ii] + "&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung'>" + lectureArray[ii] + "</a>";
-            textLecture.setText(Html.fromHtml(finalLecLink));
-            linearLayout.addView(textLecture);
-
-            TextView textProf = (TextView) findViewById(R.id.textSchedule);
-            textProf.setClickable(true);
-            textProf.setMovementMethod(LinkMovementMethod.getInstance());
-            String finalProfLink = "<a href='http://www.lsf.tu-berlin.de/qisserver/servlet/de.his.servlet.RequestDispatcherServlet?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfoPerson&publishSubDir=personal&keep=y&personal.pid=" + pLink[ii] + "'>" + profArray[ii] + "</a>";
-            textProf.setText(Html.fromHtml(finalProfLink));
-            linearLayout.addView(textLecture);
-            /*textProf.setText(profArray[ii]);
-            linearLayout.addView(textProf);*/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
-        /*TextView textView =(TextView)findViewById(R.id.textView);
-        textView.setClickable(true);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
-        String text = "<a href='http://www.google.com'> Google </a>";
-        textView.setText(Html.fromHtml(text));*/
+        return super.onOptionsItemSelected(item);
     }
+
+    public GradientDrawable backgroundWithBorder(int color) {
+        GradientDrawable gdDefault = new GradientDrawable();
+        gdDefault.setStroke(4, color);
+        gdDefault.setCornerRadii(new float[]{10, 10, 10, 10, 10, 10, 10, 10});
+        return gdDefault;
+    }
+
+    public void getInfo(String criterion, int floorNumber, int dayTypeOrPersonNumber, int indexZone){
+        // criterion shows result of user clicking on spinners in onCreate method
+        switch (criterion){
+            case "allDays":
+                infoLectureChain.findFloorNumberForLectureDay(floorNumber, dayTypeOrPersonNumber, indexZone);
+                break;
+            case "specialDay":
+                infoLectureChain.findFloorNumberForLectureDay(floorNumber, dayTypeOrPersonNumber, indexZone);
+                break;
+            case "allAcademicians":
+                infoPersonChain.findFloorNumberForPerson(floorNumber, dayTypeOrPersonNumber, indexZone);
+                break;
+            case "academician":
+                infoPersonChain.findFloorNumberForPerson(floorNumber, dayTypeOrPersonNumber, indexZone);
+                break;
+            case "phd":
+                infoPersonChain.findFloorNumberForPerson(floorNumber, dayTypeOrPersonNumber, indexZone);
+                break;
+        }
+        getRoomAdapter(criterion);
+    }
+
+    public void getRoomAdapter(String adapterType) {
+        Display newDisplay = getWindowManager().getDefaultDisplay();
+        int width = newDisplay.getWidth();
+
+        ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandable_list_view); // you can use (ExpandableListView) findViewById(R.id.list)
+        listView.setDividerHeight(2);
+        listView.setGroupIndicator(null);
+        listView.setClickable(true);
+        listView.setGroupIndicator(getResources().getDrawable(R.drawable.group_chevron_indicator));
+        listView.setIndicatorBounds(width - GetDipsFromPixel(48), width - GetDipsFromPixel(0));
+
+        switch (adapterType) {
+            case "allDays":
+                LectureExtendAdapter adapterAllDays = new LectureExtendAdapter(infoLectureChain.getParent(),infoLectureChain.geChildOne(), infoLectureChain.geChildTwo(), infoLectureChain.geChildThree());
+                adapterAllDays.setInflater((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE), this);
+                listView.setAdapter(adapterAllDays);
+                break;
+            case "specialDay":
+                LectureExtendAdapter adapterDays = new LectureExtendAdapter(infoLectureChain.getParent(),infoLectureChain.geChildOne(), infoLectureChain.geChildTwo(), infoLectureChain.geChildThree());
+                adapterDays.setInflater((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE), this);
+                listView.setAdapter(adapterDays);
+                break;
+            case "allAcademicians":
+                PersonExtendAdapter adapterAllAcademicians = new PersonExtendAdapter(infoPersonChain.getParent(),infoPersonChain.geChildOne(), infoPersonChain.geChildTwo(), infoPersonChain.geChildThree());
+                adapterAllAcademicians.setInflater((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE), this);
+                listView.setAdapter(adapterAllAcademicians);
+                break;
+            case "academician":
+                PersonExtendAdapter adapterAcademician = new PersonExtendAdapter(infoPersonChain.getParent(),infoPersonChain.geChildOne(), infoPersonChain.geChildTwo(), infoPersonChain.geChildThree());
+                adapterAcademician.setInflater((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE), this);
+                listView.setAdapter(adapterAcademician);
+                break;
+            case "phd":
+                PersonExtendAdapter adapterPhd = new PersonExtendAdapter(infoPersonChain.getParent(),infoPersonChain.geChildOne(), infoPersonChain.geChildTwo(), infoPersonChain.geChildThree());
+                adapterPhd.setInflater((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE), this);
+                listView.setAdapter(adapterPhd);
+                break;
+        }
+    }
+
+    private int GetDipsFromPixel(float pixels){
+        // Get the screen's density scale
+        final float scale = getResources().getDisplayMetrics().density;
+        // Convert the dps to pixels, based on density scale
+        return (int) (pixels * scale + 0.5f);
+    }
+
 }

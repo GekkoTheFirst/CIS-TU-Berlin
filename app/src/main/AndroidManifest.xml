@@ -6,7 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -17,12 +19,30 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InfoDisplayActivity">
 
+        <activity android:name=".InfoDisplayActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".WebLecturePageActivity"
+            android:parentActivityName=".InfoDisplayActivity"
+            android:label="@string/web_title_lsf">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".InfoDisplayActivity" />
+        </activity>
+        <activity android:name=".WebPersonPageActivity"
+            android:parentActivityName=".InfoDisplayActivity"
+            android:label="@string/web_title_lsf">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".InfoDisplayActivity" />
         </activity>
     </application>
 

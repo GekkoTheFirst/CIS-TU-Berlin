@@ -21,6 +21,7 @@ package tu_berlin.alexei.cis_tu_berlin;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;

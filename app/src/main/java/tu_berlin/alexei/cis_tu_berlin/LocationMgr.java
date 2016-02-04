@@ -15,6 +15,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.esri.android.map.LocationDisplayManager;
+
+import java.util.List;
+
 /**
  * Created by Alexei on 08.01.2016.
  */
@@ -32,6 +36,7 @@ public class LocationMgr {
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
+            Log.i("test","onStatusChanged status "+status+" provider "+provider);
         }
 
         @Override
@@ -43,42 +48,70 @@ public class LocationMgr {
         }
     };
 
+
     private LocationMgr(Context applicationContext) {
         lm = (LocationManager) applicationContext.getSystemService(Context.LOCATION_SERVICE);
         lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, locationListener);
         if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-            Log.e("ERROR", "GPS is off");
+            Log.i(MainActivity.TAG, "GPS is off");
         } else {
-            Log.i("INFO", "GPS is on");
+            Log.i(MainActivity.TAG, "GPS is on");
         }
-
     }
 
     public double getLong(Context applicationContext) {
-        lm = (LocationManager) applicationContext.getSystemService(Context.LOCATION_SERVICE);
-       /* if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-            Log.e("Error", "GPS is off");
-        }*/
+        lm = (LocationManager)applicationContext.getSystemService(Context.LOCATION_SERVICE);
+        if(lm == null){
+            return -1;
+        }
+        List<String> providers = lm.getAllProviders();
+
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if(location == null) {
+            for (String strProvider : providers) {
+                //Log.i("test", "" + strProvider);
+                location = lm.getLastKnownLocation(strProvider);
+                if(location != null){
+                    break;
+                }
+                //Log.i("test", "location " + location);
+            }
+        }
+
+        if(location == null){
+            return -1;
+        }
+
         double longitude = location.getLongitude();
-        /*if(location == null){
-            longitude = 52.512330;
-            Log.e("Error","Longitude is Null");
-        }*/
+
         return longitude;
     }
 
     public double getLat(Context applicationContext ){
         lm = (LocationManager)applicationContext.getSystemService(Context.LOCATION_SERVICE);
-        /*if ( !lm.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-            Log.e("Error","GPS is off");
-        }*/
+        if(lm == null){
+            return -1;
+        }
+        List<String> providers = lm.getAllProviders();
+
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if(location == null) {
+            for (String strProvider : providers) {
+                //Log.i("test", "" + strProvider);
+                location = lm.getLastKnownLocation(strProvider);
+                if(location != null){
+                    break;
+                }
+                //Log.i("test", "location: " + location);
+            }
+        }
+
+        if(location == null){
+            return -1;
+        }
+
         double latitude = location.getLatitude();
-        /*if(location == null){
-            latitude = 13.326923;
-            Log.e("Error","Latitude is Null");
-        }*/
+
         return latitude;
     }
 
