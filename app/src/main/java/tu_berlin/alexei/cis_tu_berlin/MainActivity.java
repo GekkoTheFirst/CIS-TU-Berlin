@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private String BSSID5FlML = "a0:cf:5b:3f:eb:02"; // ?!
     private String BSSID5FlMR = "a0:cf:5b:0e:34:72"; // ?!
 
-    public int findIndex(){
+    private int findIndex(){
         LocationMgr locationMgr = LocationMgr.getInstance(this);
         if(locationMgr == null){
             Log.e("test", "Location mgr is null");
@@ -191,6 +191,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Loading gif
+        //final GifWebView gif = new GifWebView(this, "file:///android_asset/progress.bar.gif");
 
         // Check WiFi status
         checkWifiStatus();
@@ -202,14 +204,6 @@ public class MainActivity extends AppCompatActivity {
         // Draw H-building contour
         getHBuildingFloor(mMapView, 100);
 
-        int rssi = TUUtils.getRssi(getApplicationContext());
-        String output = TUUtils.getBBSID(getApplicationContext());
-        double longitude = LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext());
-        double latitude = LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext());
-
-        TextView itemLoco = (TextView) findViewById(R.id.textLocation);
-        itemLoco.setText("Rssi: " + rssi + " BBSID: " + output + " Lon: " + longitude + "Lat: " + latitude);
-
         FloatingActionButton positionDetectionBtn = (FloatingActionButton)findViewById(R.id.buttonPosition);
         positionDetectionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,15 +214,18 @@ public class MainActivity extends AppCompatActivity {
                 // If WiFi is connected, MacAddress will be obtained and map will be shown
                 String wifiMac = TUUtils.getBBSID(getApplicationContext());
                 int rssiMac = TUUtils.getRssi(getApplicationContext());
+                //int index = findIndex();
+
                 // Render right floor based on MAC ADDRESS and Coordinates
-                //INDEX = 1;
-                int index = findIndex();
                 // Test
-                getFloorByMac(index, mMapView, wifiMac, rssiMac);
-
-                // Origin
+                double longitude = LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext());
+                double latitude = LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext());
+                INDEX = 1;
+                getFloorByMac(INDEX, mMapView, FAKE, rssiMac);
+                TextView itemLoco = (TextView) findViewById(R.id.textLocation);
+                itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + longitude + "Lat: " + latitude);
+                // Release
                 //getFloorByMac(index, mMapView, wifiMac, rssiMac);
-
             }
         });
 
@@ -242,8 +239,8 @@ public class MainActivity extends AppCompatActivity {
                 final RotateAnimation rotateMainAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
                 rotateMainAnimation.setInterpolator(new LinearInterpolator());
                 rotateMainAnimation.setDuration(500);
-                int random = 1 + (int)Math.random()*5;
-                rotateMainAnimation.setRepeatCount(random);
+                double random = 1 + Math.random()*5;
+                rotateMainAnimation.setRepeatCount((int)random);
 
                 final ImageView imageWaitView = (ImageView) findViewById(R.id.loadingMainView);
                 imageWaitView.startAnimation(rotateMainAnimation);
@@ -252,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
                 if (STATUS.LAYER_LOADED == status) {
                     mMapView.setExtent(mCurrentMapExtent);
                     imageWaitView.setVisibility(View.GONE);
+                    //gif.setVisibility(View.GONE);
                 }
             }
         });

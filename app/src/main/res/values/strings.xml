@@ -5,18 +5,19 @@
     <string name="dec_vertical_dots">More</string>
     <!--InfoDisplayActivity-->
     <string name="btn_search">SEARCH</string>
+    <string name="weekend_lecture">No Lecture During Weekends&#8230; \n Keep Calm And Party Hard!</string>
     <!--WebPageActivity-->
     <string name="web_title_lsf">TU-LSF</string>
     <!--Menu-->
     <string name="ttl_legend">Legend</string>
     <string name="ttl_find">Find</string>
     <!-- WiFi Dialog-->
-    <string name="dialog_title">Information</string>
+    <string name="dialog_title">Network Information</string>
     <string name="dialog_wifi_text">Please Connect to \"eduroam\" WiFi Network.</string>
     <string name="dialog_wifi_on">Open</string>
     <string name="dialong_wifi_off">Cancel</string>
     <!-- GPS Dialog-->
-    <string name="dialog_gps_text">Please check GPS status.</string>
+    <string name="dialog_gps_text">Please enable GPS status.</string>
     <string name="dialog_gps_on">Open</string>
     <string name="dialog_gps_off">Cancel</string>
     <!-- Select Dialog-->

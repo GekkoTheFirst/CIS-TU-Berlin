@@ -49,7 +49,7 @@ public class LinkRoomSwitcher {
                 break;
             // H6134
             case "GIS Project":
-                _link = "";
+                _link = "173020";
                 break;
             case "Web Cartography":
                 _link = "";

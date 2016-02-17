@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spinnerMain"
-            android:layout_gravity="left|center_vertical"
+            android:layout_gravity="start|center_vertical"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/btn_spinner_round"/>
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spinner_chevron_main"
-            android:layout_gravity="center_vertical|right"
+            android:layout_gravity="center_vertical|end"
             android:src="@drawable/chevron_down"
             android:layout_marginRight="10dp"
             android:contentDescription="firstChevronDown" />
@@ -41,8 +41,8 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerProf_2_1"
-            android:layout_gravity="left|center_vertical"
+            android:id="@+id/spinner_2_1"
+            android:layout_gravity="start|center_vertical"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/btn_spinner_round"
@@ -50,8 +50,8 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerProf_2_2"
-            android:layout_gravity="left|center_vertical"
+            android:id="@+id/spinner_2_2"
+            android:layout_gravity="start|center_vertical"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/btn_spinner_round"
@@ -61,13 +61,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spinner_chevron2"
-            android:layout_gravity="center_vertical|right"
+            android:layout_gravity="center_vertical|end"
             android:src="@drawable/chevron_down"
             android:layout_marginRight="10dp"
             android:visibility="invisible"
             android:contentDescription="secondChevronDown"/>
     </FrameLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp" >
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_3_1"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/btn_spinner_round"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_chevron3"
+            android:layout_gravity="center_vertical|end"
+            android:src="@drawable/chevron_down"
+            android:layout_marginRight="10dp"
+            android:visibility="invisible"
+            android:contentDescription="thirdChevronDown" />
+    </FrameLayout>
 
     <!--Search-->
     <Button
@@ -84,11 +111,28 @@
         android:layout_marginLeft="5dp"/>
 
     <!--ExpandableList-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp">
+
     <ExpandableListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/expandable_list_view"
-        android:layout_marginTop="130dp"/>
+        android:id="@+id/expandable_list_view"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/textWeekend"
+        android:text="@string/weekend_lecture"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal" />
+
+    </RelativeLayout>
 
 
 

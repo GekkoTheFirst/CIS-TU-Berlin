@@ -26,8 +26,8 @@ public class WebLecturePageActivity extends AppCompatActivity {
         final RotateAnimation rotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setInterpolator(new LinearInterpolator());
         rotateAnimation.setDuration(500);
-        int random = 1 + (int)Math.random()*2;
-        rotateAnimation.setRepeatCount(random);
+        double random = 1 + Math.random()*5;
+        rotateAnimation.setRepeatCount((int)random);
 
         final ImageView imageView = (ImageView) findViewById(R.id.loading1View);
         imageView.startAnimation(rotateAnimation);

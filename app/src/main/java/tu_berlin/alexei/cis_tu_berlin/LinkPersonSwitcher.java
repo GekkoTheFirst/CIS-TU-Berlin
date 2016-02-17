@@ -14,6 +14,9 @@ public class LinkPersonSwitcher {
             case "Javier Herreruela":
                 _link = "1807";
                 break;
+            case "Gerth König":
+                _link = "404";
+                break;
             case "Thomas Adolphi":
                 _link = "8658";
                 break;
