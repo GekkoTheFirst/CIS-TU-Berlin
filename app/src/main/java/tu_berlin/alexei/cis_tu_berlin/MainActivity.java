@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private Polygon mCurrentMapExtent = null;
     private ArcGISDynamicMapServiceLayer mDynamicServiceLayer;
 
-
     // The basemap switching menu items.
     private MenuItem mStreetsMenuItem = null, mTopoMenuItem = null, mHybridBasemapItem = null, mOSMBasemapItem = null;
 
@@ -214,18 +213,18 @@ public class MainActivity extends AppCompatActivity {
                 // If WiFi is connected, MacAddress will be obtained and map will be shown
                 String wifiMac = TUUtils.getBBSID(getApplicationContext());
                 int rssiMac = TUUtils.getRssi(getApplicationContext());
-                //int index = findIndex();
+                int index = findIndex();
 
                 // Render right floor based on MAC ADDRESS and Coordinates
                 // Test
-                double longitude = LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext());
+                /*double longitude = LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext());
                 double latitude = LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext());
                 INDEX = 1;
                 getFloorByMac(INDEX, mMapView, FAKE, rssiMac);
                 TextView itemLoco = (TextView) findViewById(R.id.textLocation);
-                itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + longitude + "Lat: " + latitude);
+                itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + longitude + "Lat: " + latitude);*/
                 // Release
-                //getFloorByMac(index, mMapView, wifiMac, rssiMac);
+                getFloorByMac(index, mMapView, wifiMac, rssiMac);
             }
         });
 

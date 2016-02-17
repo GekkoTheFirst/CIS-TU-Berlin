@@ -17,7 +17,6 @@ public class GetInfoLectureChain {
     private ArrayList<Object> argChildTwo = new ArrayList<Object>();
     private ArrayList<Object> argChildThree = new ArrayList<Object>();
 
-
     public GetInfoLectureChain(){
     }
 
