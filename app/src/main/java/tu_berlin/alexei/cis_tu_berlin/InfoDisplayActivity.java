@@ -32,7 +32,7 @@ public class InfoDisplayActivity extends AppCompatActivity {
     private int indexZone = MainActivity.getINDEX();
     private int floorNumber = MainActivity.getFLOOR();
     private Calendar calendar = Calendar.getInstance();
-    private int day = calendar.get(Calendar.DAY_OF_WEEK);
+    private int day;
     private int numberOfAcademician;
     private String subDepartment;
     
@@ -50,7 +50,7 @@ public class InfoDisplayActivity extends AppCompatActivity {
         final ObjectAnimator moverOne = ObjectAnimator.ofFloat(btn_search, "translationY", 0, 110).setDuration(600);
         final ObjectAnimator moverTwo = ObjectAnimator.ofFloat(btn_search, "translationY", 110, 220).setDuration(600);
         final ObjectAnimator moverOneBack = ObjectAnimator.ofFloat(btn_search, "translationY", 110, 0).setDuration(600);
-        final ObjectAnimator moverTwoBack = ObjectAnimator.ofFloat(btn_search, "translationY", 220, 0).setDuration(600);
+        //final ObjectAnimator moverTwoBack = ObjectAnimator.ofFloat(btn_search, "translationY", 220, 0).setDuration(600);
         // ExpandableList
         final ExpandableListView expListView = (ExpandableListView) findViewById(R.id.expandable_list_view);
         // WeekendText
@@ -92,10 +92,16 @@ public class InfoDisplayActivity extends AppCompatActivity {
                 switch (position) {
                     case 1:
                         CRITERION = "STUDENT";
+                        subDepartment = null;
                         spinnerMain.setBackground(backgroundWithBorder(getResources().getColor(R.color.greenCheck))); //setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
-                        spinnerSecondTwo.setVisibility(View.GONE);
+                        spinnerSecondOne.setSelection(0);
+                        spinnerSecondTwo.setSelection(0);
                         spinnerSecondOne.setVisibility(View.VISIBLE);
+                        spinnerSecondTwo.setVisibility(View.GONE);
                         chevron2.setVisibility(View.VISIBLE);
+                        spinnerThirdOne.setSelection(0);
+                        spinnerThirdOne.setVisibility(View.GONE);
+                        chevron3.setVisibility(View.GONE);
                         moverOne.start();
 
                         if (expListView.getVisibility() == View.VISIBLE || textWeekend.getVisibility() == View.VISIBLE) {
@@ -107,11 +113,17 @@ public class InfoDisplayActivity extends AppCompatActivity {
                         break;
                     case 2:
                         CRITERION = "ACADEMICIAN";
+                        subDepartment = null;
                         spinnerMain.setBackground(backgroundWithBorder(getResources().getColor(R.color.greenCheck)));
+                        spinnerSecondOne.setSelection(0);
+                        spinnerSecondTwo.setSelection(0);
                         spinnerSecondOne.setVisibility(View.GONE);
                         spinnerSecondTwo.setVisibility(View.VISIBLE);
                         chevron2.setVisibility(View.VISIBLE);
-                        moverOne.start();
+                        spinnerThirdOne.setSelection(0);
+                        spinnerThirdOne.setVisibility(View.GONE);
+                        chevron3.setVisibility(View.GONE);
+                        moverOne.start();;
 
                         if (expListView.getVisibility() == View.VISIBLE || textWeekend.getVisibility() == View.VISIBLE) {
                             expListView.setVisibility(View.GONE);
@@ -237,6 +249,9 @@ public class InfoDisplayActivity extends AppCompatActivity {
                         case "allDays":
                             day = 0;
                             break;
+                        case "specialDay":
+                            day = calendar.get(Calendar.DAY_OF_WEEK);
+                            break;
                         case "allAcademicians":
                             numberOfAcademician = 100;
                             break;
@@ -254,11 +269,12 @@ public class InfoDisplayActivity extends AppCompatActivity {
                     } else {
                         // Main methods
                         if (CRITERION.equals("allDays") || CRITERION.equals("specialDay")) {
-                            if (subDepartment.equals("GIS") || subDepartment.equals("CV") || subDepartment.equals("EGA") || subDepartment.equals("SGN")){
+                            /*if (subDepartment.equals("GIS") || subDepartment.equals("CV") || subDepartment.equals("EGA") || subDepartment.equals("SGN")){
                                 moverTwoBack.start();
                             } else {
                                 moverOneBack.start();
-                            }
+                            }*/
+                            moverOneBack.start();
                             spinnerSecondOne.setVisibility(View.INVISIBLE);
                             spinnerSecondTwo.setVisibility(View.INVISIBLE);
                             spinnerThirdOne.setVisibility(View.INVISIBLE);

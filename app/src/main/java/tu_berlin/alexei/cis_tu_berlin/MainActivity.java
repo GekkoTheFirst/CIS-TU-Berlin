@@ -52,21 +52,6 @@ public class MainActivity extends AppCompatActivity {
     private final MapOptions mHybridBasemap = new MapOptions(MapOptions.MapType.HYBRID);
     private final MapOptions mOSMBasemap = new MapOptions(MapOptions.MapType.OSM);
 
-
-    // MAC ADDRESS of the floors Fl - Floor L - Left, M - Middle, R - Right
-    private String FAKE = "01:80:c2:00:00:03";
-    // 6th
-    private String BSSID6FlLL = "a0:cf:5b:3d:df:32";
-    //private String BSSID6FlLR = "a0:cf:5b:fa:43:e2";
-    private String BSSID6FlLR = "a0:cf:5b:3d:dd:62"; // !?
-    private String BSSID6FlML = "a0:cf:5b:3f:eb:02"; // !?
-    private String BSSID6FlMR = "a0:cf:5b:3f:da:f2";
-    // 5th
-    private String BSSID5FlLL = "a0:cf:5b:0e:35:52";
-    private String BSSID5FlLR = "a0:cf:5b:3d:dd:62"; // ?!
-    private String BSSID5FlML = "a0:cf:5b:3f:eb:02"; // ?!
-    private String BSSID5FlMR = "a0:cf:5b:0e:34:72"; // ?!
-
     private int findIndex(){
         LocationMgr locationMgr = LocationMgr.getInstance(this);
         if(locationMgr == null){
@@ -106,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void getHBuildingFloor(MapView mapView, int floorID) {
+    private void getHBuildingFloor(MapView mapView, int floorID) {
         switch (floorID) {
             case 100: // H contour
                 int[] contourH_ID = {6};
@@ -135,9 +120,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private String FAKE = "01:80:c2:00:00:03";
+    private void getFloorByMac(int index, MapView x, String s, int i) {
+        // MAC ADDRESS of the floors Fl - Floor L - Left, M - Middle, R - Right
 
-    public void getFloorByMac(int index, MapView x, String s, int i) {
-        //String btnStatus = "";
+        // 6th
+        String BSSID6FlLL = "a0:cf:5b:3d:df:32";
+        //private String BSSID6FlLR = "a0:cf:5b:fa:43:e2";
+        String BSSID6FlLR = "a0:cf:5b:3d:dd:62"; // !?
+        String BSSID6FlML = "a0:cf:5b:3f:eb:02"; // !?
+        String BSSID6FlMR = "a0:cf:5b:3f:da:f2";
+        // 5th
+        String BSSID5FlLL = "a0:cf:5b:0e:35:52";
+        String BSSID5FlLR = "a0:cf:5b:3d:dd:62"; // ?!
+        String BSSID5FlML = "a0:cf:5b:3f:eb:02"; // ?!
+        String BSSID5FlMR = "a0:cf:5b:0e:34:72"; // ?!
 
         switch (index) {
             case 1:
@@ -217,14 +214,14 @@ public class MainActivity extends AppCompatActivity {
 
                 // Render right floor based on MAC ADDRESS and Coordinates
                 // Test
-                /*double longitude = LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext());
+                double longitude = LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext());
                 double latitude = LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext());
                 INDEX = 1;
                 getFloorByMac(INDEX, mMapView, FAKE, rssiMac);
                 TextView itemLoco = (TextView) findViewById(R.id.textLocation);
-                itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + longitude + "Lat: " + latitude);*/
+                itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + longitude + "Lat: " + latitude);
                 // Release
-                getFloorByMac(index, mMapView, wifiMac, rssiMac);
+                //getFloorByMac(index, mMapView, wifiMac, rssiMac);
             }
         });
 
@@ -260,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Info Button
-    public void getInfoButton (){
+    private void getInfoButton (){
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         final Button nextButton = (Button) findViewById(R.id.btn_info);
         nextButton.setVisibility(View.VISIBLE);
@@ -274,13 +271,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void getPosition(MapView mMapView) {
+    private void getPosition(MapView mMapView) {
         LocationDisplayManager loc = mMapView.getLocationDisplayManager();
         loc.setAutoPanMode(LocationDisplayManager.AutoPanMode.LOCATION);
         loc.start();
     }
 
-    public void checkWifiStatus(){
+    private void checkWifiStatus(){
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         if (!mWifi.isConnected()) {
