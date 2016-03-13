@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
     private String FAKE = "01:80:c2:00:00:03";
     private void getFloorByMac(int index, MapView x, String s, int i) {
         // MAC ADDRESS of the floors Fl - Floor L - Left, M - Middle, R - Right
-
         // 6th
         String BSSID6FlLL = "a0:cf:5b:3d:df:32";
         //private String BSSID6FlLR = "a0:cf:5b:fa:43:e2";
@@ -138,37 +137,45 @@ public class MainActivity extends AppCompatActivity {
 
         switch (index) {
             case 1:
-                if (s.equals(BSSID5FlLL) || s.equals(BSSID5FlLR) || s.equals(BSSID5FlML) || s.equals(BSSID5FlMR) || s.equals(FAKE)) {
+                if (s.equals(BSSID5FlLL) || s.equals(BSSID5FlLR) || s.equals(BSSID5FlMR)) {
                     getHBuildingFloor(x, 5);
                     getInfoButton();
                     FLOOR = 5;
-                } else if(s.equals(BSSID6FlLR) && i > -70) {
+                } else if (s.equals(BSSID6FlLL) || s.equals(BSSID6FlLR) || s.equals(FAKE)) {
                     getHBuildingFloor(x, 6);
                     getInfoButton();
-                } else if (s.equals(BSSID6FlLR) && i < -70){
-                    getHBuildingFloor(x, 5);
-                    getInfoButton();
-                    FLOOR = 5;
+                    FLOOR = 6;
                 } else {
                     Toast.makeText(getApplicationContext(), "OUT OF TEST AREA", Toast.LENGTH_LONG).show();
                 }
                 break;
             case 2:
-                if (s.equals(BSSID6FlLL) || s.equals(BSSID6FlML) || s.equals(BSSID6FlMR) || s.equals(FAKE)) {
-                    getHBuildingFloor(x, 6);
-                    getInfoButton();
-                    FLOOR = 6;
-                } else if(s.equals(BSSID6FlLR) && i > -70) {
-                    getHBuildingFloor(x, 6);
-                    getInfoButton();
-                    FLOOR = 6;
-                } else if (s.equals(BSSID6FlLR) && i < -70){
+                if (s.equals(BSSID5FlLL) || s.equals(BSSID5FlLR) || s.equals(BSSID5FlML) || s.equals(BSSID5FlMR)) {
                     getHBuildingFloor(x, 5);
                     getInfoButton();
+                    FLOOR = 5;
+                } else if (s.equals(BSSID6FlLL) || s.equals(BSSID6FlML) || s.equals(BSSID6FlMR) || s.equals(FAKE)) {
+                    getHBuildingFloor(x, 6);
+                    getInfoButton();
                     FLOOR = 6;
+                } else if(s.equals(BSSID6FlLR) && i > -69) {
+                    getHBuildingFloor(x, 6);
+                    getInfoButton();
+                    FLOOR = 6;
+                } else if (s.equals(BSSID6FlLR) && i < -69){
+                    getHBuildingFloor(x, 5);
+                    getInfoButton();
+                    FLOOR = 5;
                 } else {
                     Toast.makeText(getApplicationContext(), "OUT OF TEST AREA", Toast.LENGTH_LONG).show();
                     getInfoButton();
+                }
+                break;
+            case 3:
+                if (s.equals(BSSID5FlLR) || s.equals(BSSID5FlML) || s.equals(BSSID5FlMR)) {
+                    getHBuildingFloor(x, 5);
+                    getInfoButton();
+                    FLOOR = 5;
                 }
                 break;
             default:
@@ -218,8 +225,9 @@ public class MainActivity extends AppCompatActivity {
                 double latitude = LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext());
                 INDEX = 1;
                 getFloorByMac(INDEX, mMapView, FAKE, rssiMac);
-                TextView itemLoco = (TextView) findViewById(R.id.textLocation);
-                itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + longitude + "Lat: " + latitude);
+                //TextView itemLoco = (TextView) findViewById(R.id.textLocation);
+                //itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + longitude + "Lat: " + latitude);
+
                 // Release
                 //getFloorByMac(index, mMapView, wifiMac, rssiMac);
             }
@@ -231,8 +239,8 @@ public class MainActivity extends AppCompatActivity {
             private static final long serialVersionUID = 1L;
 
             public void onStatusChanged(Object source, STATUS status) {
-                // Set the map extent once the map has been initialized, and the basemap is added or changed;
-                final RotateAnimation rotateMainAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                // Don't forget to delete visibility in layout
+                /*final RotateAnimation rotateMainAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
                 rotateMainAnimation.setInterpolator(new LinearInterpolator());
                 rotateMainAnimation.setDuration(500);
                 double random = 1 + Math.random()*5;
@@ -240,11 +248,12 @@ public class MainActivity extends AppCompatActivity {
 
                 final ImageView imageWaitView = (ImageView) findViewById(R.id.loadingMainView);
                 imageWaitView.startAnimation(rotateMainAnimation);
-                imageWaitView.setVisibility(View.VISIBLE);
+                imageWaitView.setVisibility(View.VISIBLE);*/
 
+                // Set the map extent once the map has been initialized, and the basemap is added or changed;
                 if (STATUS.LAYER_LOADED == status) {
                     mMapView.setExtent(mCurrentMapExtent);
-                    imageWaitView.setVisibility(View.GONE);
+                    //imageWaitView.setVisibility(View.GONE);
                     //gif.setVisibility(View.GONE);
                 }
             }

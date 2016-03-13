@@ -13,10 +13,14 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -244,6 +248,25 @@ public class InfoDisplayActivity extends AppCompatActivity {
         btn_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Toast.makeText(getApplication(), "CLICK", Toast.LENGTH_LONG).show();
+                Handler handler = new Handler();
+                final FrameLayout loadingFrame = (FrameLayout) findViewById(R.id.whiteLoadingFrame);
+                loadingFrame.getBackground().setAlpha(128);
+                loadingFrame.setVisibility(View.VISIBLE);
+                final RotateAnimation rotateInfoAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                rotateInfoAnimation.setInterpolator(new LinearInterpolator());
+                rotateInfoAnimation.setDuration(500);
+                rotateInfoAnimation.setRepeatCount(1);
+                final ImageView imageWaitView = (ImageView) findViewById(R.id.loadingInfoView);
+                imageWaitView.startAnimation(rotateInfoAnimation);
+                imageWaitView.setVisibility(View.VISIBLE);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageWaitView.setVisibility(View.GONE);
+                        loadingFrame.setVisibility(View.GONE);
+                    }
+                }, 1000);
+
                 if (CRITERION != null) {
                     switch (CRITERION){
                         case "allDays":
@@ -254,12 +277,15 @@ public class InfoDisplayActivity extends AppCompatActivity {
                             break;
                         case "allAcademicians":
                             numberOfAcademician = 100;
+                            day = 0;
                             break;
                         case "academician":
                             numberOfAcademician = 10;
+                            day = 0;
                             break;
                         case "phd":
                             numberOfAcademician = 0;
+                            day = 0;
                             break;
                     }
 

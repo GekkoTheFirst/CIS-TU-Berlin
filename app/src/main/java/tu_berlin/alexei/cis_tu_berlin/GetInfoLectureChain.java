@@ -31,15 +31,27 @@ public class GetInfoLectureChain {
         // floorNumber finds the floor number by mac address, see getFloorByMac() in MainActivity
         switch (floorNumber){
             case 5:
-                findIndexZoneAndDepartmentByDay(dayType, subDepartment, indexZone);
+                findIndexZoneAndDepartmentByDay5(dayType, subDepartment, indexZone);
                 break;
             case 6:
-                findIndexZoneAndDepartmentByDay(dayType, subDepartment, indexZone);
+                findIndexZoneAndDepartmentByDay6(dayType, subDepartment, indexZone);
                 break;
         }
     }
 
-    private void findIndexZoneAndDepartmentByDay(int dayType, String subDepartment, int indexZone){
+    private void findIndexZoneAndDepartmentByDay5(int dayType, String subDepartment, int indexZone) {
+        switch (dayType) {
+            case 0: // All Days
+                if(subDepartment.equals("NoSubDepartment")) {
+                    findIndexZoneForAllDaysWithoutSubDep(indexZone);
+                } else {
+                    findIndexZoneForAllDaysWithSubDep(subDepartment, indexZone);
+                }
+                break;
+        }
+    }
+
+    private void findIndexZoneAndDepartmentByDay6(int dayType, String subDepartment, int indexZone){
         switch (dayType){
             case 0: // All Days
                 if(subDepartment.equals("NoSubDepartment")) {
@@ -152,21 +164,18 @@ public class GetInfoLectureChain {
                 break;
         }
     }
+    // All Days Departament
     public void findIndexZoneForAllDaysWithSubDep(String subDepartment, int indexZone){
-            // indexZone finds a zone number of geo fence, see findIndex() in MainActivity
         if(subDepartment.equals("GIS")){
             switch (indexZone) {
                 case 1:
                     String[] r1 = {"H6131", "H6134"};
-                    String[][] l1 = {{"No Lectures"},
-                            // Next
-                            {"GIS Project", "Web Cartography"}};
-                    String[][] s1 = {{""},
-                            // Next
-                            {"WS (3)", "WS (3)"}};
-                    String[][] p1 = {{""},
-                            // Next
-                            {"Kada", "Kada"}};
+                    String[][] l1 = {{"Geoinformation Technology"},
+                            {"GIS Project", "Web Cartography", "Geo Database", "Geoinformation Technology"}};
+                    String[][] s1 = {{"WS (1)"},
+                            {"WS (3)", "WS (3)", "WS (1)", "WS (1)"}};
+                    String[][] p1 = {{"Kada/Becker/König"},
+                            {"Kada", "Kada", "König/Fuls", "Kada/Becker/König"}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
@@ -214,75 +223,63 @@ public class GetInfoLectureChain {
         } else if(subDepartment.equals("CV")){
             switch (indexZone) {
                 case 1:
-                    String[] r1 = {"H6131"};
+                    String[] r1 = {};
                     String[][] l1 = {{"Zone1 CV Lectures"}};
                     String[][] s1 = {{""}};
                     String[][] p1 = {{"CV Profs"}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
+                case 2:
+                    String[] r2 = {};
+                    String[][] l2 = {{"Zone2 CV Lectures"}, {"Zone2 CV Lectures"}};
+                    String[][] s2 = {{""}, {""}};
+                    String[][] p2 = {{"P21"}, {"P22"}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
         } else if(subDepartment.equals("EGA")){
             switch (indexZone) {
                 case 1:
                     String[] r1 = {"H6131", "H6134"};
-                    String[][] l1 = {{"Zone1 EGA Lectures"}, {"Zone1 EGA Lectures"}};
-                    String[][] s1 = {{""}, {""}};
-                    String[][] p1 = {{""}, {""}};
+                    String[][] l1 = {{"Adjustment Calculation I", "Transformation of Geodetic Networks", "Statistic Test Procedures and Analysis of Stochastic Processes",
+                            "Engineering Geodesy and Adjustment Calculation Project", "Geodetic Basics and Monitoring Measurments"},
+                            {"Adjustment Calculation I (additional exercise)"}};
+                    String[][] s1 = {{"WS (1)", "WS (3)", "WS (3)", "WS (3)", "WS (3)"},
+                            {"WS (1)"}};
+                    String[][] p1 = {{"Neitzel/Weisbrich", "Neitzel/Weisbrich", "Neitzel/Weisbrich", "Neitzel/Weisbrich", "Neitzel/Wujanz"},
+                            {"Neitzel/Weisbrich"}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"R21", "R22"};
+                    String[][] l2 = {{"Zone2 EGA Lectures"}, {"Zone2 EGA Lectures"}};
+                    String[][] s2 = {{""}, {""}};
+                    String[][] p2 = {{"P21"}, {"P22"}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
             }
         } else if(subDepartment.equals("SGN")){
             switch (indexZone) {
                 case 1:
-                    String[] r1 = {"H6131", "H6134"};
-                    String[][] l1 = {{"Zone1 SGN Lectures"}, {"Zone1 SGN Lectures"}};
-                    String[][] s1 = {{""}, {""}};
-                    String[][] p1 = {{"SGN Prof1"}, {"SGN Prof2"}};
+                    String[] r1 = {"H6131"};
+                    String[][] l1 = {{"Introduction to Satellite Geodesy","Selected Topics in Planetary Science", "Planetary and Space Science Project"}};
+                    String[][] s1 = {{"WS (1)", "WS (3)", "WS (3)"}};
+                    String[][] p1 = {{"Oberst/Flechtner/Heinkelmann", "Hussmann", "Oberst/Flechtner/Schuh"}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
-                /*case 2:
-                    String[] r2 = {"R", "R2"};
-                    String[][] l2 = {{"No Lecture during weekends"}, {"No Lecture during weekends"}};
+                case 2:
+                    String[] r2 = {"R21", "R22"};
+                    String[][] l2 = {{"Zone2 SGN Lectures"}, {"Zone2 SGN Lectures"}};
                     String[][] s2 = {{""}, {""}};
-                    String[][] p2 = {{"Keep calm and do homework"}, {"Keep calm and do homework"}};
+                    String[][] p2 = {{"P21"}, {"P22"}};
                     AddChildToParent two = new AddChildToParent();
                     setChildToParent(two, r2, l2, s2, p2);
                     break;
-                case 3:
-                    String[] r3 = {"", ""};
-                    String[][] l3 = {{"No Lecture during weekends"}, {"No Lecture during weekends"}};
-                    String[][] s3 = {{""}, {""}};
-                    String[][] p3 = {{"Keep calm and do homework"}, {"Keep calm and do homework"}};
-                    AddChildToParent three = new AddChildToParent();
-                    setChildToParent(three, r3, l3, s3, p3);
-                    break;
-                case 4:
-                    String[] r4 = {"", ""};
-                    String[][] l4 = {{"No Lecture during weekends"}, {"No Lecture during weekends"}};
-                    String[][] s4 = {{""}, {""}};
-                    String[][] p4 = {{"Keep calm and do homework"}, {"Keep calm and do homework"}};
-                    AddChildToParent four = new AddChildToParent();
-                    setChildToParent(four, r4, l4, s4, p4);
-                    break;
-                case 5:
-                    String[] r5 = {"", ""};
-                    String[][] l5 = {{"No Lecture during weekends"}, {"No Lecture during weekends"}};
-                    String[][] s5 = {{""}, {""}};
-                    String[][] p5 = {{"Keep calm and do homework"}, {"Keep calm and do homework"}};
-                    AddChildToParent five = new AddChildToParent();
-                    setChildToParent(five, r5, l5, s5, p5);
-                    break;
-                case 6:
-                    String[] r6 = {"", ""};
-                    String[][] l6 = {{"No Lecture during weekends"}, {"No Lecture during weekends"}};
-                    String[][] s6 = {{""}, {""}};
-                    String[][] p6 = {{"Keep calm and do homework"}, {"Keep calm and do homework"}};
-                    AddChildToParent six = new AddChildToParent();
-                    setChildToParent(six, r6, l6, s6, p6);
-                    break;*/
             }
         }
     }
@@ -298,6 +295,15 @@ public class GetInfoLectureChain {
                 setChildToParent(one, r1, l1, s1, p1);
                 break;
             case 2:
+                String[] r2 = {"R6131", "R6134"};
+                String[][] l2 = {{"GIS Project", "Introduction to Satellite Geodesy"},
+                        {"Adjustment Calculation I", "Basics in Engineering Surveys"}};
+                String[][] s2 = {{"WS (3)", "WS (1)"},
+                        {"WS (1)", "WS (2)"}};
+                String[][] p2 = {{"Kada", "Oberst/Flechtner/Heinkelmann"},
+                        {"Neitzel", "Neitzel"}};
+                AddChildToParent two = new AddChildToParent();
+                setChildToParent(two, r2, l2, s2, p2);
                 break;
             case 3:
                 break;
@@ -313,20 +319,29 @@ public class GetInfoLectureChain {
         if(subDepartment.equals("GIS")) {
             switch (indexZone) {
                 case 1:
-                    String[] r1 = {"H6131"};
-                    String[][] l1 = {{"GIS Project"},
-                            // Next
-                            {""}};
-                    String[][] s1 = {{"WS (3)"},
-                            // Next
-                            {""}};
-                    String[][] p1 = {{"Kada"},
-                            // Next
-                            {""}};
+                    String[] r1 = {"H6131", "H6134"};
+                    String[][] l1 = {{"Geoinformation Technology"},
+                            {"GIS Project", "Web Cartography"}};
+                    String[][] s1 = {{"WS (1)"},
+                            {"WS (3)", "WS (3)"}};
+                    String[][] p1 = {{"Kada/Becker/König"},
+                            {"Kada", "Kada"}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
                 case 2:
+                    String[] r2 = {"H6131 Zone2"};
+                    String[][] l2 = {{"GIS Project"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{"WS (3)"},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{"Kada"},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
                 case 3:
                     break;
@@ -340,7 +355,7 @@ public class GetInfoLectureChain {
         } else if(subDepartment.equals("CV")){
             switch (indexZone) {
                 case 1:
-                    String[] r1 = {"Mon"};
+                    String[] r1 = {"Monday"};
                     String[][] l1 = {{"CVLectures"},
                             // Next
                             {""}};
@@ -350,7 +365,25 @@ public class GetInfoLectureChain {
                     String[][] p1 = {{""},
                             // Next
                             {""}};
+                    AddChildToParent one = new AddChildToParent();
+                    setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"Monday Zone2"};
+                    String[][] l2 = {{"CV Project"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
+
         }
         else if(subDepartment.equals("EGA")){
             switch (indexZone) {
@@ -365,6 +398,21 @@ public class GetInfoLectureChain {
                     String[][] p1 = {{""},
                             // Next
                             {""}};
+                    break;
+                case 2:
+                    String[] r2 = {"Monday Zone2"};
+                    String[][] l2 = {{"EGA Project"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
         }
         else if(subDepartment.equals("SGN")){
@@ -382,6 +430,20 @@ public class GetInfoLectureChain {
                             {""}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"Monday Zone2"};
+                    String[][] l2 = {{"SGN Project"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
             }
         }
@@ -404,6 +466,18 @@ public class GetInfoLectureChain {
                 setChildToParent(one, r1, l1, s1, p1);
                 break;
             case 2:
+                String[] r2 = {"Tuesday Zone2"};
+                String[][] l2 = {{"AllLectures"},
+                        // Next
+                        {""}};
+                String[][] s2 = {{""},
+                        // Next
+                        {""}};
+                String[][] p2 = {{""},
+                        // Next
+                        {""}};
+                AddChildToParent two = new AddChildToParent();
+                setChildToParent(two, r2, l2, s2, p2);
                 break;
             case 3:
                 break;
@@ -432,6 +506,20 @@ public class GetInfoLectureChain {
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
+                case 2:
+                    String[] r2 = {"Tue Zone2"};
+                    String[][] l2 = {{"GIS Project"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
         } else if(subDepartment.equals("CV")){
             switch (indexZone) {
@@ -448,6 +536,20 @@ public class GetInfoLectureChain {
                             {""}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"Tue Zone2"};
+                    String[][] l2 = {{"CV Project"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
             }
         }
@@ -467,6 +569,20 @@ public class GetInfoLectureChain {
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
+                case 2:
+                    String[] r2 = {"Tue Zone2"};
+                    String[][] l2 = {{"EGA Project"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
         }
         else if(subDepartment.equals("SGN")){
@@ -484,6 +600,20 @@ public class GetInfoLectureChain {
                             {""}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"Tue Zone2"};
+                    String[][] l2 = {{"SGN Project"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
             }
 
@@ -507,6 +637,18 @@ public class GetInfoLectureChain {
                 setChildToParent(one, r1, l1, s1, p1);
                 break;
             case 2:
+                String[] r2 = {"Wed Zone2"};
+                String[][] l2 = {{"AllLectures"},
+                        // Next
+                        {""}};
+                String[][] s2 = {{""},
+                        // Next
+                        {""}};
+                String[][] p2 = {{""},
+                        // Next
+                        {""}};
+                AddChildToParent two = new AddChildToParent();
+                setChildToParent(two, r2, l2, s2, p2);
                 break;
             case 3:
                 break;
@@ -535,6 +677,20 @@ public class GetInfoLectureChain {
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
+                case 2:
+                    String[] r2 = {"Wed Zone2"};
+                    String[][] l2 = {{"GIS"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
         } else if(subDepartment.equals("CV")){
             switch (indexZone) {
@@ -551,6 +707,20 @@ public class GetInfoLectureChain {
                             {""}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"Wed Zone2"};
+                    String[][] l2 = {{"CV"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
             }
         }
@@ -570,6 +740,20 @@ public class GetInfoLectureChain {
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
+                case 2:
+                    String[] r2 = {"Wed Zone2"};
+                    String[][] l2 = {{"EGA"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
         }
         else if(subDepartment.equals("SGN")){
@@ -587,6 +771,20 @@ public class GetInfoLectureChain {
                             {""}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"Wed Zone2"};
+                    String[][] l2 = {{"SGN"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
             }
 
@@ -610,6 +808,18 @@ public class GetInfoLectureChain {
                 setChildToParent(one, r1, l1, s1, p1);
                 break;
             case 2:
+                String[] r2 = {"Thu Zone2"};
+                String[][] l2 = {{"AllLectures"},
+                        // Next
+                        {""}};
+                String[][] s2 = {{""},
+                        // Next
+                        {""}};
+                String[][] p2 = {{""},
+                        // Next
+                        {""}};
+                AddChildToParent two = new AddChildToParent();
+                setChildToParent(two, r2, l2, s2, p2);
                 break;
             case 3:
                 break;
@@ -638,6 +848,20 @@ public class GetInfoLectureChain {
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
+                case 2:
+                    String[] r2 = {"Thu Zone2"};
+                    String[][] l2 = {{"GIS"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
         } else if(subDepartment.equals("CV")){
             switch (indexZone) {
@@ -654,6 +878,20 @@ public class GetInfoLectureChain {
                             {""}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"Thu Zone2"};
+                    String[][] l2 = {{"CV"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
             }
         }
@@ -673,6 +911,20 @@ public class GetInfoLectureChain {
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
+                case 2:
+                    String[] r2 = {"Thu Zone2"};
+                    String[][] l2 = {{"EGA"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
         }
         else if(subDepartment.equals("SGN")){
@@ -690,6 +942,20 @@ public class GetInfoLectureChain {
                             {""}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"Thu Zone2"};
+                    String[][] l2 = {{"SGN"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
             }
 
@@ -713,6 +979,18 @@ public class GetInfoLectureChain {
                 setChildToParent(one, r1, l1, s1, p1);
                 break;
             case 2:
+                String[] r2 = {"Fri Zone2"};
+                String[][] l2 = {{"AllLectures"},
+                        // Next
+                        {""}};
+                String[][] s2 = {{""},
+                        // Next
+                        {""}};
+                String[][] p2 = {{""},
+                        // Next
+                        {""}};
+                AddChildToParent two = new AddChildToParent();
+                setChildToParent(two, r2, l2, s2, p2);
                 break;
             case 3:
                 break;
@@ -741,6 +1019,20 @@ public class GetInfoLectureChain {
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
+                case 2:
+                    String[] r2 = {"Fri Zone2"};
+                    String[][] l2 = {{"GIS"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
         } else if(subDepartment.equals("CV")){
             switch (indexZone) {
@@ -757,6 +1049,20 @@ public class GetInfoLectureChain {
                             {""}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"Fri Zone2"};
+                    String[][] l2 = {{"CV"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
             }
         }
@@ -776,6 +1082,20 @@ public class GetInfoLectureChain {
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
                     break;
+                case 2:
+                    String[] r2 = {"Fri Zone2"};
+                    String[][] l2 = {{"EGA"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
+                    break;
             }
         }
         else if(subDepartment.equals("SGN")){
@@ -793,6 +1113,20 @@ public class GetInfoLectureChain {
                             {""}};
                     AddChildToParent one = new AddChildToParent();
                     setChildToParent(one, r1, l1, s1, p1);
+                    break;
+                case 2:
+                    String[] r2 = {"Fri Zone2"};
+                    String[][] l2 = {{"SGN"},
+                            // Next
+                            {""}};
+                    String[][] s2 = {{""},
+                            // Next
+                            {""}};
+                    String[][] p2 = {{""},
+                            // Next
+                            {""}};
+                    AddChildToParent two = new AddChildToParent();
+                    setChildToParent(two, r2, l2, s2, p2);
                     break;
             }
 
