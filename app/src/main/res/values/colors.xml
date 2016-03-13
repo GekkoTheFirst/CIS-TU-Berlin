@@ -8,5 +8,6 @@
     <color name="backgroundMain">#f2f2f2</color>
     <color name="whiteMain">#ffffff</color>
     <color name="greenCheck">#009900</color>
+    <color name="loadingGray">#A5A5A5</color>
     <color name="black">#000000</color>
 </resources>
