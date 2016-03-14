@@ -68,6 +68,7 @@ public class LectureExtendAdapter extends BaseExpandableListAdapter {
                 LinkRoomSwitcher linkRoomSwitcher = new LinkRoomSwitcher(child.get(childPosition));
                 String link = linkRoomSwitcher.getLink();
 
+                // Check data. If it's not available - pushes Toaster
                 if(link != null) {
                     webLecturePAGE = "http://www.lsf.tu-berlin.de/qisserver/servlet/de.his.servlet.RequestDispatcherServlet?state=verpublish&status=init&vmfile=no&publishid=" + link + "&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung";
                     //http://www.lsf.tu-berlin.de/qisserver/servlet/de.his.servlet.RequestDispatcherServlet?state=verpublish&status=init&vmfile=no&publishid=173001&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung
@@ -77,9 +78,8 @@ public class LectureExtendAdapter extends BaseExpandableListAdapter {
 
                     Intent intent = new Intent(view.getContext(), WebLecturePageActivity.class);
                     view.getContext().startActivity(intent);
-
                 } else{
-                    Toast.makeText(activity.getApplication(), "No Info Available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity.getApplication(), R.string.no_info, Toast.LENGTH_SHORT).show();
                 }
             }
         });

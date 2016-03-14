@@ -94,22 +94,34 @@ public class GetInfoPersonChain {
                     setChildToParent(one, r1, n1, e1, t1);
                     break;
                 case 2:
-                    String[] r2 = {"H6128","H6130","H6158","H6159","H6160"};
+                    String[] r2 = {"H6128","H6130","H6158","H6159","H6160","H6161","H6163","H6164","H6165"};
                     String[][] n2 = {{"Hartmut Lehmann"},
                             {"Javier Herreruela"},
                             {"Daniel Wujanz"},
-                            {"Fang ", "Demitrius"},
-                            {"Sven Weisbrich"}};
+                            {"Jinpeng Feng ", "Georgios Malissiovas", "Cheng-Chieh Wu", "Anastasia Pasioti"},
+                            {"Sven Weisbrich"},
+                            {"Anastasios Margonis", "Ender Tasdelen"},
+                            {"Philipp Gläser", "Isabel Haase"},
+                            {"Friedrich Damme", "Konrad Willner"},
+                            {"Omar Al-Juboori", "Steffi Burmeister", "Fabian Lüdicke"}};
                     String[][] e2 = {{"h.lehmann@tu-berlin.de"},
                             {"javier.herreruela@tu-berlin.de"},
                             {"daniel.wujanz@tu-berlin.de"},
-                            {"fang@email.com", "dmt@email.com",},
-                            {"s.weisbrich@tu-berlin.de"}};
-                    String[][] t2 = {{"lehmann"},
+                            {"jinpeng.feng@mailbox.tu-berlin.de", "georgios.malissiovas@tu-berlin.de", "cheng-chieh.wu@bam.de", "anastasia.pasioti@mailbox.tu-berlin.de"},
+                            {"s.weisbrich@tu-berlin.de"},
+                            {"anastasios.margonis@tu-berlin.de", "ender.tasdelen@tu-berlin.de"},
+                            {"philipp.glaser@tu-berlin.de", "isabel.haase@tu-berlin.de"},
+                            {"friedrich.damme@tu-berlin.de","konrad.willner@tu-berlin.de"},
+                            {"omar-juboori@tu-berlin.de", "steffi.burmeister@tu-berlin.de", "fabian.luedicke@tu-berlin.de"}};
+                    String[][] t2 = {{"+4930 314-27500"},
                             {"+4930 314-27501"},
-                            {"daniel"},
-                            {"+4917", "+4915"},
-                            {"sven"}};
+                            {"+4930 314-24148"},
+                            {"+4930 314-24147", "+4930 314-24147", "+4930 314-24147", "+4930 314-24147"},
+                            {"+4930 314-24146"},
+                            {"+4930 314-29897", "+4930 314-29897"},
+                            {"+4930 314-28828", "+4930 314-28828"},
+                            {"+4930 314-28840", "+4930 314-28840"},
+                            {"+4930 314-23331", "+4930 314-23331", "+4930 314-23331"}};
                     AddChildToParent two = new AddChildToParent();
                     setChildToParent(two, r2, n2, e2, t2);
                     break;
@@ -122,10 +134,10 @@ public class GetInfoPersonChain {
                     setChildToParent(three, r3, n3, e3, t3);
                     break;
                 case 4:
-                    String[] r4 = {"H6110", "H6113"};
-                    String[][] n4 = {{"Prof. Neitzel"}, {"Anastasia"}};
-                    String[][] e4 = {{"neitzel@tu-belin.de"}, {"anastasia@tu-berli.de"}};
-                    String[][] t4 = {{"prof"}, {"sia"}};
+                    String[] r4 = {"H6110", ""};
+                    String[][] n4 = {{"Prof. Neitzel"}, {""}};
+                    String[][] e4 = {{"neitzel@tu-belin.de"}, {""}};
+                    String[][] t4 = {{"prof"}, {""}};
                     AddChildToParent four = new AddChildToParent();
                     setChildToParent(four, r4, n4, e4, t4);
                     break;
@@ -157,16 +169,23 @@ public class GetInfoPersonChain {
                     setChildToParent(one, r1, n1, e1, t1);
                     break;
                 case 2:
-                    String[] r2 = {"H6128","H6130","H6158","H6160"};
-                    String[][] n2 = {{"Hartmut Lehmann"},{"Javier Herreruela"},{"Daniel Wujanz"},{"Sven Weisbrich"}};
+                    String[] r2 = {"H6128","H6130","H6158","H6160","H6163","H6164","H6165"};
+                    String[][] n2 = {{"Hartmut Lehmann"},{"Javier Herreruela"},{"Daniel Wujanz"},{"Sven Weisbrich"},{"Philipp Gläser", "Isabel Haase"},{"Friedrich Damme", "Konrad Willner"},
+                            {"Omar Al-Juboori", "Steffi Burmeister", "Fabian Lüdicke"}};
                     String[][] e2 = {{"h.lehmann@tu-berlin.de"},
                             {"javier.herreruela@tu-berlin.de"},
                             {"daniel.wujanz@tu-berlin.de"},
-                            {"s.weisbrich@tu-berlin.de"}};
-                    String[][] t2 = {{"lehmann"},
+                            {"s.weisbrich@tu-berlin.de"},
+                            {"philipp.glasser@tu-berlin.de", "isabel.haase@tu-berlin.de"},
+                            {"friedrich.damme@tu-berlin.de", "konrad.willner@tu-berlin.de"},
+                            {"omar-juboori@tu-berlin.de", "steffi.burmeister@tu-berlin.de", "fabian.luedicke@tu-berlin.de"}};
+                    String[][] t2 = {{"+4930 314-27500"},
                             {"+4930 314-27501"},
-                            {"daniel"},
-                            {"sven"}};
+                            {"+4930 314-24148"},
+                            {"+4930 314-24146"},
+                            {"+4930 314-28828", "+4930 314-28828"},
+                            {"+4930 314-28840", "+4930 314-28840"},
+                            {"+4930 314-23331", "+4930 314-23331", "+4930 314-23331"}};
                     AddChildToParent two = new AddChildToParent();
                     setChildToParent(two, r2, n2, e2, t2);
                     break;
@@ -214,10 +233,13 @@ public class GetInfoPersonChain {
                     setChildToParent(one, r1, n1, e1, t1);
                     break;
                 case 2:
-                    String[] r2 = {"H6158"};
-                    String[][] n2 = {{"Fang", "Demitrius"}};
-                    String[][] e2 = {{"fang@tu-berlin.de", "dmt@tu-berlin.de"}};
-                    String[][] t2 = {{"+4917...", "+4915..."}};
+                    String[] r2 = {"H6158","H6161"};
+                    String[][] n2 = {{"Jinpeng Feng ", "Georgios Malissiovas", "Cheng-Chieh Wu", "Anastasia Pasioti"},
+                            {"Anastasios Margonis", "Ender Tasdelen"}};
+                    String[][] e2 = {{"jinpeng.feng@mailbox.tu-berlin.de", "georgios.malissiovas@tu-berlin.de", "cheng-chieh.wu@bam.de", "anastasia.pasioti@mailbox.tu-berlin.de"},
+                            {"anastasios.margonis@tu-berlin.de", "ender.tasdelen@tu-berlin.de"}};
+                    String[][] t2 = {{"+4930 314-24147", "+4930 314-24147", "+4930 314-24147", "+4930 314-24147"},
+                            {"+4930 314-29897", "+4930 314-29897"}};
                     AddChildToParent two = new AddChildToParent();
                     setChildToParent(two, r2, n2, e2, t2);
                     break;

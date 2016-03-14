@@ -11,7 +11,7 @@ public class LinkPersonSwitcher {
 
     public String getLink() {
         switch (_link) {
-            case "Javier Herreruela":
+            case "Hartmut Lehmann":
                 _link = "1807";
                 break;
             case "Gerth König":
@@ -22,6 +22,9 @@ public class LinkPersonSwitcher {
                 break;
             case "Andreas Wichmann":
                 _link = "8658";
+                break;
+            default:
+                _link = null;
                 break;
         }
         return _link;

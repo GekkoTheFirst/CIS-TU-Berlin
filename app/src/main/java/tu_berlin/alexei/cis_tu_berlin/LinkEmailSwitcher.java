@@ -20,6 +20,13 @@ public class LinkEmailSwitcher {
             case "Andreas Wichmann":
                 _link = "andreas.wichmann@tu-berlin.de";
                 break;
+            case "Hartmut Lehmann":
+                _link = "h.lehmann@tu-berlin.de";
+                break;
+            default:
+                _link = null;
+                break;
+
         }
         return _link;
     }

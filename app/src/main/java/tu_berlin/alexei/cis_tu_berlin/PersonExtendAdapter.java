@@ -57,29 +57,22 @@ public class PersonExtendAdapter extends BaseExpandableListAdapter {
         textView = (TextView) convertView.findViewById(R.id.textContactNumber);
         textView.setText(child3.get(childPosition));
 
-
         final Context context = parent.getContext();
         final FragmentManager fm = ((Activity) context).getFragmentManager();
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                // Get information from the click on the ExtendedList
                 LinkPersonSwitcher linkPersonSwitcher = new LinkPersonSwitcher(child.get(childPosition));
                 String linkPerson = linkPersonSwitcher.getLink();
+                if (linkPerson != null)
+                    webPersonPAGE = "http://www.lsf.tu-berlin.de/qisserver/servlet/de.his.servlet.RequestDispatcherServlet?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfoPerson&publishSubDir=personal&keep=y&personal.pid=" + linkPerson;
                 EMAIL = new LinkEmailSwitcher(child.get(childPosition)).getLink();
                 PHONE = new LinkPhoneSwitcher(child.get(childPosition)).getLink();
-
-                if(linkPerson != null) {
-                    webPersonPAGE = "http://www.lsf.tu-berlin.de/qisserver/servlet/de.his.servlet.RequestDispatcherServlet?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfoPerson&publishSubDir=personal&keep=y&personal.pid=" + linkPerson;
-                } else {
-                    Toast.makeText(activity.getApplication(), "No Info Available", Toast.LENGTH_SHORT).show();
-                }
-
-
+                // Launch DialogFragment
                 DialogFragment popup = new ThreeActivityDialogFragment();
                 popup.show(fm, "PopUP");
-
             }
         });
         return convertView;
@@ -91,13 +84,11 @@ public class PersonExtendAdapter extends BaseExpandableListAdapter {
         //if (convertView == null) {
         convertView = inflater.inflate(R.layout.room_row_layout, null);
         //}
-
         ((CheckedTextView) convertView).setText(parentItems.get(groupPosition));
         ((CheckedTextView) convertView).setTypeface(null, Typeface.BOLD);
         ((CheckedTextView) convertView).setChecked(isExpanded);
 
         return convertView;
-
     }
 
     @Override

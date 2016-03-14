@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                 // Test
                 double longitude = LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext());
                 double latitude = LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext());
-                INDEX = 1;
+                INDEX = 2;
                 getFloorByMac(INDEX, mMapView, FAKE, rssiMac);
                 //TextView itemLoco = (TextView) findViewById(R.id.textLocation);
                 //itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + longitude + "Lat: " + latitude);

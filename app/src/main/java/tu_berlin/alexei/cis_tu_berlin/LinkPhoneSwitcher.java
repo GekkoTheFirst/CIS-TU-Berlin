@@ -20,6 +20,12 @@ public class LinkPhoneSwitcher {
             case "Andreas Wichmann":
                 _link = "+493031429498";
                 break;
+            case "Hartmut Lehmann":
+                _link = "+493031427500";
+                break;
+            default:
+                _link = null;
+                break;
         }
         return _link;
     }

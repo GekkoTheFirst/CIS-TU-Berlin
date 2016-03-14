@@ -1,5 +1,6 @@
 package tu_berlin.alexei.cis_tu_berlin;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -17,7 +18,6 @@ import android.widget.Toast;
 public class ThreeActivityDialogFragment extends DialogFragment{
     final private String[] list = {"Visit web page", "Write e-mail", "Make call"};
 
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -30,24 +30,39 @@ public class ThreeActivityDialogFragment extends DialogFragment{
                         //Context context = PersonExtendAdapter.CNTXT;
                         switch (whichCase) {
                             case 0:
-                                Intent webPage = new Intent(context, WebPersonPageActivity.class);
-                                context.startActivity(webPage);
+                                if(PersonExtendAdapter.webPersonPAGE != null) {
+                                    Intent webPage = new Intent(context, WebPersonPageActivity.class);
+                                    context.startActivity(webPage);
+                                } else {
+                                    dismiss();
+                                    Toast.makeText(getActivity().getApplication(),  R.string.no_info, Toast.LENGTH_SHORT).show();
+                                }
                                 break;
                             case 1:
                                 String eMail =  PersonExtendAdapter.EMAIL;
-                                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", eMail, null));
-                                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Email Subject");
-                                emailIntent.putExtra(Intent.EXTRA_TEXT, "Message Body");
-                                startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                                if(eMail != null){
+                                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", eMail, null));
+                                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Email Subject");
+                                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Message Body");
+                                    startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                                } else {
+                                    dismiss();
+                                    Toast.makeText(getActivity().getApplication(),  R.string.no_info, Toast.LENGTH_SHORT).show();
+                                }
                                 break;
                             case 2:
-                                String number =  PersonExtendAdapter.PHONE;
-                                PackageManager packageManager = context.getPackageManager();
-                                if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
-                                    //call phone
-                                    Intent intent = new Intent(Intent.ACTION_CALL);
-                                    intent.setData(Uri.parse("tel:" + number));
-                                    startActivity(intent);
+                                String number = PersonExtendAdapter.PHONE;
+                                if(number != null) {
+                                    PackageManager packageManager = context.getPackageManager();
+                                    if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+                                        //call phone
+                                        Intent intent = new Intent(Intent.ACTION_CALL);
+                                        intent.setData(Uri.parse("tel:" + number));
+                                        startActivity(intent);
+                                    }
+                                } else {
+                                    dismiss();
+                                    Toast.makeText(getActivity().getApplication(),  R.string.no_info, Toast.LENGTH_SHORT).show();
                                 }
                                 /*Intent makeCall = new Intent(Intent.ACTION_CALL, Uri.fromParts("telephone", PersonExtendAdapter.PHONE, null));
                                 startActivity(makeCall);*/
