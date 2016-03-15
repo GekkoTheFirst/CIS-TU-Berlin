@@ -10,15 +10,17 @@ public class GetInfoPersonChain {
     private ArrayList<Object> argChildOne = new ArrayList<Object>();
     private ArrayList<Object> argChildTwo = new ArrayList<Object>();
     private ArrayList<Object> argChildThree = new ArrayList<Object>();
+    private ArrayList<Object> argChildFour = new ArrayList<Object>();
 
     public GetInfoPersonChain(){
     }
 
-    public void setChildToParent(AddChildToParent arg, String[] argMain, String[][] personTitle, String[][] personEmail, String[][] personPhone){
+    public void setChildToParent(AddChildToParent arg, String[] argMain, String[][] personTitle, String[][] personEmail, String[][] personPhone, String[][] personImage){
         argParent = arg.getRoomNumber(argMain);
         argChildOne = arg.getLecName(personTitle);
         argChildTwo = arg.getLecSemester(personEmail);
         argChildThree = arg.getLecProfessor(personPhone);
+        argChildFour = arg.getImgProfessor(personImage);
     }
 
     public void findFloorNumberForPerson(int floorNumber, int numberOfPerson, int indexZone){
@@ -44,16 +46,19 @@ public class GetInfoPersonChain {
                             {"andreas.wichmann@tu-berlin.de"}};
                     String[][] t3 = {{"+4930 314-24332"},
                             {"+4930 314-29498"}};
+                    String[][] i3 = {{"http://www.gis.tu-berlin.de/fileadmin/fg227/Bilder/Mitarbeiter/gross/becker.jpg"},
+                            {""}};
                     AddChildToParent three = new AddChildToParent();
-                    setChildToParent(three, r3, n3, e3, t3);
+                    setChildToParent(three, r3, n3, e3, t3, i3);
                     break;
                 case 4:
-                    String[] r4 = {"5112"};
-                    String[][] n4 = {{"Prof. Oberst"}};
-                    String[][] e4 = {{""}};
-                    String[][] t4 = {{""}};
+                    String[] r4 = {"5121"};
+                    String[][] n4 = {{"Prof. Jürgen Oberst"}};
+                    String[][] e4 = {{"juergen.oberst@tu-berlin.de"}};
+                    String[][] t4 = {{"+4930 314-79701"}};
+                    String[][] i4 = {{""}};
                     AddChildToParent four = new AddChildToParent();
-                    setChildToParent(four, r4, n4, e4, t4);
+                    setChildToParent(four, r4, n4, e4, t4, i4);
                     break;
             }
         } else if (numberOfPerson == 10){
@@ -63,8 +68,9 @@ public class GetInfoPersonChain {
                     String[][] n3 = {{"Thomas Adolphi"}};
                     String[][] e3 = {{"thomas.becker@tu-berlin.de"}};
                     String[][] t3 = {{"+4930 314-24332"}};
+                    String[][] i3 = {{"http://www.gis.tu-berlin.de/fileadmin/fg227/Bilder/Mitarbeiter/gross/becker.jpg"}};
                     AddChildToParent three = new AddChildToParent();
-                    setChildToParent(three, r3, n3, e3, t3);
+                    setChildToParent(three, r3, n3, e3, t3, i3);
                     break;
             }
         } else if(numberOfPerson == 0){
@@ -74,8 +80,9 @@ public class GetInfoPersonChain {
                     String[][] n3 = {{""}};
                     String[][] e3 = {{""}};
                     String[][] t3 = {{""}};
+                    String[][] i3 = {{""}};
                     AddChildToParent three = new AddChildToParent();
-                    setChildToParent(three, r3, n3, e3, t3);
+                    setChildToParent(three, r3, n3, e3, t3, i3);
                     break;
             }
         }
@@ -90,8 +97,9 @@ public class GetInfoPersonChain {
                     String[][] n1 = {{"Gerth König"}};
                     String[][] e1 = {{"gerhard.koenig@tu-berlin.de"}};
                     String[][] t1 = {{"+4930 314-23338"}};
+                    String[][] i1 = {{"http://www.gis.tu-berlin.de/fileadmin/fg227/Bilder/Mitarbeiter/gross/gert.jpg"}};
                     AddChildToParent one = new AddChildToParent();
-                    setChildToParent(one, r1, n1, e1, t1);
+                    setChildToParent(one, r1, n1, e1, t1, i1);
                     break;
                 case 2:
                     String[] r2 = {"H6128","H6130","H6158","H6159","H6160","H6161","H6163","H6164","H6165"};
@@ -122,40 +130,50 @@ public class GetInfoPersonChain {
                             {"+4930 314-28828", "+4930 314-28828"},
                             {"+4930 314-28840", "+4930 314-28840"},
                             {"+4930 314-23331", "+4930 314-23331", "+4930 314-23331"}};
+                    String[][] i2 = {{""},
+                            {""},
+                            {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/wujanz.jpg"},
+                            {"","","",""},
+                            {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/weisbrich.jpg"},
+                            {"",""},{"",""},{"",""},{"","",""}};
                     AddChildToParent two = new AddChildToParent();
-                    setChildToParent(two, r2, n2, e2, t2);
+                    setChildToParent(two, r2, n2, e2, t2, i2);
                     break;
                 case 3:
                     String[] r3 = {"H6116"};
-                    String[][] n3 = {{"Maria Cockric", "Kinga"}};
+                    String[][] n3 = {{"Marija Čokrlić", "Kinga Węzka"}};
                     String[][] e3 = {{"maria@tu-berlin.de", "kinga@tu-berlin.de"}};
                     String[][] t3 = {{"maria", "kinga"}};
+                    String[][] i3 = {{"",""}};
                     AddChildToParent three = new AddChildToParent();
-                    setChildToParent(three, r3, n3, e3, t3);
+                    setChildToParent(three, r3, n3, e3, t3, i3);
                     break;
                 case 4:
                     String[] r4 = {"H6110", ""};
                     String[][] n4 = {{"Prof. Neitzel"}, {""}};
                     String[][] e4 = {{"neitzel@tu-belin.de"}, {""}};
                     String[][] t4 = {{"prof"}, {""}};
+                    String[][] i4 = {{""},{""}};
                     AddChildToParent four = new AddChildToParent();
-                    setChildToParent(four, r4, n4, e4, t4);
+                    setChildToParent(four, r4, n4, e4, t4, i4);
                     break;
                 case 5:
                     String[] r5 = {""};
                     String[][] n5 = {{""}};
                     String[][] e5 = {{""}};
                     String[][] t5 = {{""}};
+                    String[][] i5 = {{""}};
                     AddChildToParent five = new AddChildToParent();
-                    setChildToParent(five, r5, n5, e5, t5);
+                    setChildToParent(five, r5, n5, e5, t5, i5);
                     break;
                 case 6:
                     String[] r6 = {""};
                     String[][] n6 = {{""}};
                     String[][] e6 = {{""}};
                     String[][] t6 = {{""}};
+                    String[][] i6 = {{""}};
                     AddChildToParent six = new AddChildToParent();
-                    setChildToParent(six, r6, n6, e6, t6);
+                    setChildToParent(six, r6, n6, e6, t6, i6);
                     break;
             }
         } else if(numberOfPerson == 10){ // Only Academicians 
@@ -165,8 +183,9 @@ public class GetInfoPersonChain {
                     String[][] n1 = {{"Gerth König"}};
                     String[][] e1 = {{"gerhard.koenig@tu-berlin.de"}};
                     String[][] t1 = {{"+4930 314-23338"}};
+                    String[][] i1 = {{"http://www.gis.tu-berlin.de/fileadmin/fg227/Bilder/Mitarbeiter/gross/gert.jpg"}};
                     AddChildToParent one = new AddChildToParent();
-                    setChildToParent(one, r1, n1, e1, t1);
+                    setChildToParent(one, r1, n1, e1, t1, i1);
                     break;
                 case 2:
                     String[] r2 = {"H6128","H6130","H6158","H6160","H6163","H6164","H6165"};
@@ -186,40 +205,48 @@ public class GetInfoPersonChain {
                             {"+4930 314-28828", "+4930 314-28828"},
                             {"+4930 314-28840", "+4930 314-28840"},
                             {"+4930 314-23331", "+4930 314-23331", "+4930 314-23331"}};
+                    String[][] i2 = {{""},{""},
+                            {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/wujanz.jpg"},
+                            {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/weisbrich.jpg"},
+                            {"",""},{"",""},{"","",""}};
                     AddChildToParent two = new AddChildToParent();
-                    setChildToParent(two, r2, n2, e2, t2);
+                    setChildToParent(two, r2, n2, e2, t2, i2);
                     break;
                 case 3:
                     String[] r3 = {""};
                     String[][] n3 = {{""}};
                     String[][] e3 = {{""}};
                     String[][] t3 = {{""}};
+                    String[][] i3 = {{""}};
                     AddChildToParent three = new AddChildToParent();
-                    setChildToParent(three, r3, n3, e3, t3);
+                    setChildToParent(three, r3, n3, e3, t3, i3);
                     break;
                 case 4:
                     String[] r4 = {"H6110"};
-                    String[][] n4 = {{"Prof. Neitzel"}};
-                    String[][] e4 = {{"neitzel@tu-belin.de"}};
-                    String[][] t4 = {{"prof"}};
+                    String[][] n4 = {{"Prof. Frank Neitzel"}};
+                    String[][] e4 = {{"frank.neitzel@tu-belin.de"}};
+                    String[][] t4 = {{"+4930 314-22375"}};
+                    String[][] i4 = {{"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/Neitzel1.jpg"}};
                     AddChildToParent four = new AddChildToParent();
-                    setChildToParent(four, r4, n4, e4, t4);
+                    setChildToParent(four, r4, n4, e4, t4, i4);
                     break;
                 case 5:
                     String[] r5 = {""};
                     String[][] n5 = {{""}};
                     String[][] e5 = {{""}};
                     String[][] t5 = {{""}};
+                    String[][] i5 = {{""}};
                     AddChildToParent five = new AddChildToParent();
-                    setChildToParent(five, r5, n5, e5, t5);
+                    setChildToParent(five, r5, n5, e5, t5, i5);
                     break;
                 case 6:
                     String[] r6 = {""};
                     String[][] n6 = {{""}};
                     String[][] e6 = {{""}};
                     String[][] t6 = {{""}};
+                    String[][] i6 = {{""}};
                     AddChildToParent six = new AddChildToParent();
-                    setChildToParent(six, r6, n6, e6, t6);
+                    setChildToParent(six, r6, n6, e6, t6, i6);
                     break;
             }
         } else if(numberOfPerson == 0){ // Phd student
@@ -229,8 +256,9 @@ public class GetInfoPersonChain {
                     String[][] n1 = {{""}};
                     String[][] e1 = {{""}};
                     String[][] t1 = {{""}};
+                    String[][] i1 = {{""}};
                     AddChildToParent one = new AddChildToParent();
-                    setChildToParent(one, r1, n1, e1, t1);
+                    setChildToParent(one, r1, n1, e1, t1, i1);
                     break;
                 case 2:
                     String[] r2 = {"H6158","H6161"};
@@ -240,40 +268,45 @@ public class GetInfoPersonChain {
                             {"anastasios.margonis@tu-berlin.de", "ender.tasdelen@tu-berlin.de"}};
                     String[][] t2 = {{"+4930 314-24147", "+4930 314-24147", "+4930 314-24147", "+4930 314-24147"},
                             {"+4930 314-29897", "+4930 314-29897"}};
+                    String[][] i2 = {{"","","",""},{"",""}};
                     AddChildToParent two = new AddChildToParent();
-                    setChildToParent(two, r2, n2, e2, t2);
+                    setChildToParent(two, r2, n2, e2, t2, i2);
                     break;
                 case 3:
                     String[] r3 = {"H6116"};
                     String[][] n3 = {{"Maria Cockric", "Kinga"}};
                     String[][] e3 = {{"maria@tu-berlin.de", "kinga@tu-berlin.de"}};
                     String[][] t3 = {{"maria", "kinga"}};
+                    String[][] i3 = {{"",""}};
                     AddChildToParent three = new AddChildToParent();
-                    setChildToParent(three, r3, n3, e3, t3);
+                    setChildToParent(three, r3, n3, e3, t3, i3);
                     break;
                 case 4:
-                    String[] r4 = {"H6113"};
-                    String[][] n4 = {{"Anastasia"}};
-                    String[][] e4 = {{"anastasia@tu-berli.de"}};
-                    String[][] t4 = {{"sia"}};
+                    String[] r4 = {""};
+                    String[][] n4 = {{""}};
+                    String[][] e4 = {{""}};
+                    String[][] t4 = {{""}};
+                    String[][] i4 = {{""}};
                     AddChildToParent four = new AddChildToParent();
-                    setChildToParent(four, r4, n4, e4, t4);
+                    setChildToParent(four, r4, n4, e4, t4, i4);
                     break;
                 case 5:
                     String[] r5 = {"", ""};
                     String[][] n5 = {{""}, {""}};
                     String[][] e5 = {{""}, {""}};
                     String[][] t5 = {{""}, {""}};
+                    String[][] i5 = {{""}, {""}};
                     AddChildToParent five = new AddChildToParent();
-                    setChildToParent(five, r5, n5, e5, t5);
+                    setChildToParent(five, r5, n5, e5, t5, i5);
                     break;
                 case 6:
                     String[] r6 = {"", ""};
                     String[][] n6 = {{""}, {""}};
                     String[][] e6 = {{""}, {""}};
                     String[][] t6 = {{""}, {""}};
+                    String[][] i6 = {{""}, {""}};
                     AddChildToParent six = new AddChildToParent();
-                    setChildToParent(six, r6, n6, e6, t6);
+                    setChildToParent(six, r6, n6, e6, t6, i6);
                     break;
             }
         }
@@ -283,16 +316,20 @@ public class GetInfoPersonChain {
         return argParent;
     }
 
-    public ArrayList<Object> geChildOne(){
+    public ArrayList<Object> getChildOne(){
         return argChildOne;
     }
 
-    public ArrayList<Object> geChildTwo(){
+    public ArrayList<Object> getChildTwo(){
         return argChildTwo;
     }
 
-    public ArrayList<Object> geChildThree(){
+    public ArrayList<Object> getChildThree(){
         return argChildThree;
+    }
+
+    public ArrayList<Object> getChildFour(){
+        return argChildFour;
     }
 
 }

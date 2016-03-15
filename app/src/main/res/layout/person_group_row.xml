@@ -5,14 +5,13 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="65dp"
         android:id="@+id/imageContactView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="8dp"
-        android:src="@drawable/account_box_outline48"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="8dp"/>
 
     <TextView android:id="@+id/textContactName"
         android:textSize="18sp"
@@ -22,7 +21,7 @@
         android:layout_gravity="left"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="65dp"
         android:layout_marginBottom="5dp" />
 
     <TextView android:id="@+id/textContactEmail"
@@ -33,7 +32,7 @@
         android:layout_gravity="left"
         android:layout_alignParentRight="false"
         android:layout_alignParentEnd="false"
-        android:layout_marginLeft="65dp"
+        android:layout_marginLeft="75dp"
         android:layout_marginBottom="2dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textContactName" />
@@ -44,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_below="@+id/textContactEmail"
-        android:layout_marginLeft="65dp" />
+        android:layout_marginLeft="75dp" />
 
 
 </RelativeLayout>

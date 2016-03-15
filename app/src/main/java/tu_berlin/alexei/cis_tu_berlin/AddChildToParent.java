@@ -10,6 +10,7 @@ public class AddChildToParent {
     private ArrayList<Object> childArrayOne = new ArrayList<Object>();
     private ArrayList<Object> childArrayTwo = new ArrayList<Object>();
     private ArrayList<Object> childArrayThree = new ArrayList<Object>();
+    private ArrayList<Object> childArrayFour = new ArrayList<Object>();
 
     public AddChildToParent(){
     }
@@ -65,5 +66,20 @@ public class AddChildToParent {
             childArrayThree.add(child);
         }
         return childArrayThree;
+    }
+
+    public ArrayList<Object> getImgProfessor(String[][] _setImgProf){
+        // Child - Professor Name
+        ArrayList<String> child = new ArrayList<String>();
+        for(int i = 0; i < _setImgProf.length; i++){
+            if(i != 0) {
+                child = new ArrayList<String>();
+            }
+            for(int c = 0; c < _setImgProf[i].length; c++){
+                child.add(_setImgProf[i][c]);
+            }
+            childArrayFour.add(child);
+        }
+        return childArrayFour;
     }
 }

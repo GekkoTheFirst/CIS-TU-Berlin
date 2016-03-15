@@ -5,15 +5,23 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.nfc.tech.NfcA;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckedTextView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -21,19 +29,43 @@ import java.util.ArrayList;
  */
 public class PersonExtendAdapter extends BaseExpandableListAdapter {
 
-    public static String webPersonPAGE, EMAIL, PHONE;
+    public static String webPersonPAGE, EMAIL, PHONE, IMAGE;
     private Activity activity;
-    private ArrayList<Object> childtems, childtems2, childtems3;
+    private ArrayList<Object> childtems, childtems2, childtems3, childtems4;
     private LayoutInflater inflater;
-    private ArrayList<String> parentItems, child, child2, child3;
+    private ArrayList<String> parentItems, child, child2, child3, child4;
 
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
 
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
 
-    public PersonExtendAdapter(ArrayList<String> parents, ArrayList<Object> childern, ArrayList<Object> childern2, ArrayList<Object> childern3) {
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
+
+    public PersonExtendAdapter(ArrayList<String> parents, ArrayList<Object> children, ArrayList<Object> children2, ArrayList<Object> children3, ArrayList<Object> children4) {
         this.parentItems = parents;
-        this.childtems = childern;
-        this.childtems2 = childern2;
-        this.childtems3 = childern3;
+        this.childtems = children;
+        this.childtems2 = children2;
+        this.childtems3 = children3;
+        this.childtems4 = children4;
     }
     public void setInflater(LayoutInflater inflater, Activity activity) {
         this.inflater = inflater;
@@ -46,6 +78,8 @@ public class PersonExtendAdapter extends BaseExpandableListAdapter {
         child = (ArrayList<String>) childtems.get(groupPosition);
         child2 = (ArrayList<String>) childtems2.get(groupPosition);
         child3 = (ArrayList<String>) childtems3.get(groupPosition);
+        child4 = (ArrayList<String>) childtems4.get(groupPosition);
+        
         TextView textView = null;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.person_group_row, null);
@@ -56,7 +90,13 @@ public class PersonExtendAdapter extends BaseExpandableListAdapter {
         textView.setText(child2.get(childPosition));
         textView = (TextView) convertView.findViewById(R.id.textContactNumber);
         textView.setText(child3.get(childPosition));
-
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageContactView);
+        // Checks if there is no img link, it loads default png. Otherwise it loads img from the Internet
+        if(child4.get(childPosition).equals("")) {
+            imageView.setImageResource(R.drawable.account_box_outline48);
+        } else {
+            new DownloadImageTask(imageView).execute(child4.get(childPosition));
+        }
         final Context context = parent.getContext();
         final FragmentManager fm = ((Activity) context).getFragmentManager();
 
@@ -70,6 +110,7 @@ public class PersonExtendAdapter extends BaseExpandableListAdapter {
                     webPersonPAGE = "http://www.lsf.tu-berlin.de/qisserver/servlet/de.his.servlet.RequestDispatcherServlet?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfoPerson&publishSubDir=personal&keep=y&personal.pid=" + linkPerson;
                 EMAIL = new LinkEmailSwitcher(child.get(childPosition)).getLink();
                 PHONE = new LinkPhoneSwitcher(child.get(childPosition)).getLink();
+
                 // Launch DialogFragment
                 DialogFragment popup = new ThreeActivityDialogFragment();
                 popup.show(fm, "PopUP");

@@ -406,17 +406,17 @@ public class InfoDisplayActivity extends AppCompatActivity {
                 listView.setAdapter(adapterDays);
                 break;
             case "allAcademicians":
-                PersonExtendAdapter adapterAllAcademicians = new PersonExtendAdapter(infoPersonChain.getParent(),infoPersonChain.geChildOne(), infoPersonChain.geChildTwo(), infoPersonChain.geChildThree());
+                PersonExtendAdapter adapterAllAcademicians = new PersonExtendAdapter(infoPersonChain.getParent(),infoPersonChain.getChildOne(), infoPersonChain.getChildTwo(), infoPersonChain.getChildThree(), infoPersonChain.getChildFour());
                 adapterAllAcademicians.setInflater((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE), this);
                 listView.setAdapter(adapterAllAcademicians);
                 break;
             case "academician":
-                PersonExtendAdapter adapterAcademician = new PersonExtendAdapter(infoPersonChain.getParent(),infoPersonChain.geChildOne(), infoPersonChain.geChildTwo(), infoPersonChain.geChildThree());
+                PersonExtendAdapter adapterAcademician = new PersonExtendAdapter(infoPersonChain.getParent(),infoPersonChain.getChildOne(), infoPersonChain.getChildTwo(), infoPersonChain.getChildThree(), infoPersonChain.getChildFour());
                 adapterAcademician.setInflater((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE), this);
                 listView.setAdapter(adapterAcademician);
                 break;
             case "phd":
-                PersonExtendAdapter adapterPhd = new PersonExtendAdapter(infoPersonChain.getParent(),infoPersonChain.geChildOne(), infoPersonChain.geChildTwo(), infoPersonChain.geChildThree());
+                PersonExtendAdapter adapterPhd = new PersonExtendAdapter(infoPersonChain.getParent(),infoPersonChain.getChildOne(), infoPersonChain.getChildTwo(), infoPersonChain.getChildThree(), infoPersonChain.getChildFour());
                 adapterPhd.setInflater((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE), this);
                 listView.setAdapter(adapterPhd);
                 break;
