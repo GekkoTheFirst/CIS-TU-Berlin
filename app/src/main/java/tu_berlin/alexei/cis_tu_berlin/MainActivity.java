@@ -2,8 +2,10 @@ package tu_berlin.alexei.cis_tu_berlin;
 
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.design.widget.FloatingActionButton;
@@ -124,13 +126,13 @@ public class MainActivity extends AppCompatActivity {
     private void getFloorByMac(int index, MapView x, String s, int i) {
         // MAC ADDRESS of the floors Fl - Floor L - Left, M - Middle, R - Right
         // 6th
-        String BSSID6FlLL = "a0:cf:5b:3d:df:32";
-        //private String BSSID6FlLR = "a0:cf:5b:fa:43:e2";
-        String BSSID6FlLR = "a0:cf:5b:3d:dd:62"; // !?
+        String BSSID6FlLL = "a0:cf:5b:0e:35:52";
+        String BSSID6FlLR = "a0:cf:5b:fa:43:e2";
+        //String BSSID6FlLR = "a0:cf:5b:3d:dd:62"; // !?
         String BSSID6FlML = "a0:cf:5b:3f:eb:02"; // !?
         String BSSID6FlMR = "a0:cf:5b:3f:da:f2";
         // 5th
-        String BSSID5FlLL = "a0:cf:5b:0e:35:52";
+        String BSSID5FlLL = "a0:cf:5b:3d:df:32";
         String BSSID5FlLR = "a0:cf:5b:3d:dd:62"; // ?!
         String BSSID5FlML = "a0:cf:5b:3f:eb:02"; // ?!
         String BSSID5FlMR = "a0:cf:5b:0e:34:72"; // ?!
@@ -146,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     getInfoButton();
                     FLOOR = 6;
                 } else {
-                    Toast.makeText(getApplicationContext(), "OUT OF TEST AREA", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "OUT OF AREA #1", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case 2:
@@ -167,8 +169,8 @@ public class MainActivity extends AppCompatActivity {
                     getInfoButton();
                     FLOOR = 5;
                 } else {
-                    Toast.makeText(getApplicationContext(), "OUT OF TEST AREA", Toast.LENGTH_LONG).show();
-                    getInfoButton();
+                    Toast.makeText(getApplicationContext(), "OUT OF AREA #2", Toast.LENGTH_SHORT).show();
+                    //getInfoButton();
                 }
                 break;
             case 3:
@@ -176,10 +178,13 @@ public class MainActivity extends AppCompatActivity {
                     getHBuildingFloor(x, 5);
                     getInfoButton();
                     FLOOR = 5;
+                } else {
+                    Toast.makeText(getApplicationContext(), "OUT OF AREA #3", Toast.LENGTH_SHORT).show();
+                    //getInfoButton();
                 }
                 break;
             default:
-                //Toast.makeText(getApplicationContext(), "Out of test area", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Out of Area", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -209,27 +214,30 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton positionDetectionBtn = (FloatingActionButton)findViewById(R.id.buttonPosition);
         positionDetectionBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
-                // Display your position
-                getPosition(mMapView);
+            public void onClick (View v){
+                //if(wifiIsConnected()) {
+                //    checkWifiStatus();
+                //} else {
+                    // Display your position
+                    getPosition(mMapView);
 
-                // If WiFi is connected, MacAddress will be obtained and map will be shown
-                String wifiMac = TUUtils.getBBSID(getApplicationContext());
-                int rssiMac = TUUtils.getRssi(getApplicationContext());
-                int index = findIndex();
+                    // If WiFi is connected, MacAddress will be obtained and map will be shown
+                    String wifiMac = TUUtils.getBBSID(getApplicationContext());
+                    int rssiMac = TUUtils.getRssi(getApplicationContext());
+                    int index = findIndex();
 
-                // Render right floor based on MAC ADDRESS and Coordinates
-                // Test
-                double longitude = LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext());
-                double latitude = LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext());
-                INDEX = 2;
-                getFloorByMac(INDEX, mMapView, FAKE, rssiMac);
-                //TextView itemLoco = (TextView) findViewById(R.id.textLocation);
-                //itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + longitude + "Lat: " + latitude);
+                    // Render right floor based on MAC ADDRESS and Coordinates
+                    // Test
+                    INDEX = 2;
+                    getFloorByMac(INDEX, mMapView, FAKE, rssiMac);
+                    //TextView itemLoco = (TextView) findViewById(R.id.textLocation);
+                    //itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext()) + "Lat: " + LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext()));
 
-                // Release
-                //getFloorByMac(index, mMapView, wifiMac, rssiMac);
+                    // Release
+                    //getFloorByMac(index, mMapView, wifiMac, rssiMac);
+                //}
             }
         });
 
@@ -239,30 +247,13 @@ public class MainActivity extends AppCompatActivity {
             private static final long serialVersionUID = 1L;
 
             public void onStatusChanged(Object source, STATUS status) {
-                // Don't forget to delete visibility in layout
-                /*final RotateAnimation rotateMainAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                rotateMainAnimation.setInterpolator(new LinearInterpolator());
-                rotateMainAnimation.setDuration(500);
-                double random = 1 + Math.random()*5;
-                rotateMainAnimation.setRepeatCount((int)random);
-
-                final ImageView imageWaitView = (ImageView) findViewById(R.id.loadingMainView);
-                imageWaitView.startAnimation(rotateMainAnimation);
-                imageWaitView.setVisibility(View.VISIBLE);*/
 
                 // Set the map extent once the map has been initialized, and the basemap is added or changed;
                 if (STATUS.LAYER_LOADED == status) {
                     mMapView.setExtent(mCurrentMapExtent);
-                    //imageWaitView.setVisibility(View.GONE);
-                    //gif.setVisibility(View.GONE);
                 }
             }
         });
-
-    }
-
-    public String getServerUrl(){
-        return getResources().getString(R.string.map_service_url);
     }
 
     // Info Button
@@ -280,20 +271,34 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Geolocation method (blue dot)
     private void getPosition(MapView mMapView) {
         LocationDisplayManager loc = mMapView.getLocationDisplayManager();
         loc.setAutoPanMode(LocationDisplayManager.AutoPanMode.LOCATION);
         loc.start();
     }
 
-    private void checkWifiStatus(){
+    // Check if wifi is connected
+    private boolean wifiIsConnected(){
+        boolean ans = false;
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (!mWifi.isConnected()) {
+        if(!mWifi.isConnected())
+            ans = true;
+        return ans;
+    }
+    // If wifi is off - launches Dialog Fragment
+    private void checkWifiStatus(){
+        if(wifiIsConnected()) {
             FragmentManager fm = getFragmentManager();
             DialogFragment wifiAlert = new WifiDialogFragment();
             wifiAlert.show(fm, "WifiDialogFragment");
         }
+    }
+
+    // ArcGIS Dynamic layers
+    public String getServerUrl(){
+        return getResources().getString(R.string.map_service_url);
     }
 
     public ArcGISDynamicMapServiceLayer getLayer(){
@@ -322,27 +327,31 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.legend:
-                new LegendDialogFragment().show(getFragmentManager(), LegendDialogFragment.TAG);
+                if(!wifiIsConnected()){
+                    new LegendDialogFragment().show(getFragmentManager(), LegendDialogFragment.TAG);
+                } else {
+                    Toast.makeText(getApplication(),  R.string.no_info, Toast.LENGTH_SHORT).show();
+                }
                 return true;
             case R.id.World_Street_Map:
                 mMapView.setMapOptions(mStreetsBasemap);
                 mStreetsMenuItem.setChecked(true);
-                Toast.makeText(this, "Map is being changed to \"streets\"", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Map is being changed to \"streets\"", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.World_Topo:
                 mMapView.setMapOptions(mTopoBasemap);
                 mTopoMenuItem.setChecked(true);
-                Toast.makeText(this, "Map is being changed to \"topo\"", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Map is being changed to \"topo\"", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.World_Hybrid:
                 mMapView.setMapOptions(mHybridBasemap);
                 mHybridBasemapItem.setChecked(true);
-                Toast.makeText(this, "Map is being changed to \"hybrid\"", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Map is being changed to \"hybrid\"", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.OSM:
                 mMapView.setMapOptions(mOSMBasemap);
                 mOSMBasemapItem.setChecked(true);
-                Toast.makeText(this, "Map is being changed to \"OSM\"", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Map is being changed to \"OSM\"", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 // If we got here, the user's action was not recognized.

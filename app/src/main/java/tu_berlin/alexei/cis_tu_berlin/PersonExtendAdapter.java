@@ -4,11 +4,9 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.nfc.tech.NfcA;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,10 +16,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +25,7 @@ import java.util.ArrayList;
  */
 public class PersonExtendAdapter extends BaseExpandableListAdapter {
 
-    public static String webPersonPAGE, EMAIL, PHONE, IMAGE;
+    public static String webPersonPAGE, EMAIL, PHONE;
     private Activity activity;
     private ArrayList<Object> childtems, childtems2, childtems3, childtems4;
     private LayoutInflater inflater;
@@ -91,6 +87,7 @@ public class PersonExtendAdapter extends BaseExpandableListAdapter {
         textView = (TextView) convertView.findViewById(R.id.textContactNumber);
         textView.setText(child3.get(childPosition));
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageContactView);
+
         // Checks if there is no img link, it loads default png. Otherwise it loads img from the Internet
         if(child4.get(childPosition).equals("")) {
             imageView.setImageResource(R.drawable.account_box_outline48);
@@ -100,6 +97,7 @@ public class PersonExtendAdapter extends BaseExpandableListAdapter {
         final Context context = parent.getContext();
         final FragmentManager fm = ((Activity) context).getFragmentManager();
 
+        // On Click opens Dialog Fragment
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
