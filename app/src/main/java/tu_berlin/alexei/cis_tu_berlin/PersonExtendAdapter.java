@@ -103,11 +103,11 @@ public class PersonExtendAdapter extends BaseExpandableListAdapter {
             public void onClick(View view) {
                 // Get information from the click on the ExtendedList
                 LinkPersonSwitcher linkPersonSwitcher = new LinkPersonSwitcher(child.get(childPosition));
-                String linkPerson = linkPersonSwitcher.getLink();
+                String linkPerson = linkPersonSwitcher.getLink()[0];
                 if (linkPerson != null)
                     webPersonPAGE = "http://www.lsf.tu-berlin.de/qisserver/servlet/de.his.servlet.RequestDispatcherServlet?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfoPerson&publishSubDir=personal&keep=y&personal.pid=" + linkPerson;
-                EMAIL = new LinkEmailSwitcher(child.get(childPosition)).getLink();
-                PHONE = new LinkPhoneSwitcher(child.get(childPosition)).getLink();
+                EMAIL = new LinkPersonSwitcher(child.get(childPosition)).getLink()[1];
+                PHONE = new LinkPersonSwitcher(child.get(childPosition)).getLink()[2];
 
                 // Launch DialogFragment
                 DialogFragment popup = new ThreeActivityDialogFragment();

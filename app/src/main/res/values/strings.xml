@@ -4,7 +4,7 @@
     <string name="info_btn">Info available</string>
     <string name="dec_vertical_dots">More</string>
     <!-- plus ThreeActivityDialogFragment-->
-    <string name="no_info">No Info Available</string>
+    <string name="no_info">Not Available</string>
     <!--InfoDisplayActivity-->
     <string name="btn_search">SEARCH</string>
     <string name="weekend_lecture">No Lecture During Weekends&#8230;\n Keep Calm and Party Hard!</string>
