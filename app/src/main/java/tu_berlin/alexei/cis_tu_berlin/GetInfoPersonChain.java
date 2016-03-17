@@ -131,7 +131,7 @@ public class GetInfoPersonChain {
                             {"+4930 314-28840", "+4930 314-28840"},
                             {"+4930 314-23331", "+4930 314-23331", "+4930 314-23331"}};
                     String[][] i2 = {{""},
-                            {""},
+                            {"https://www.gis.tu-berlin.de/fileadmin/fg227/Bilder/Mitarbeiter/klein/javier.jpg"},
                             {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/wujanz.jpg"},
                             {"","","",""},
                             {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/weisbrich.jpg"},
@@ -201,11 +201,12 @@ public class GetInfoPersonChain {
                     String[][] t2 = {{"+4930 314-27500"},
                             {"+4930 314-27501"},
                             {"+4930 314-24148"},
-                            {"+4930 314-24146"},
+                            {"+4930 314-23204"},
                             {"+4930 314-28828", "+4930 314-28828"},
                             {"+4930 314-28840", "+4930 314-28840"},
                             {"+4930 314-23331", "+4930 314-23331", "+4930 314-23331"}};
-                    String[][] i2 = {{""},{""},
+                    String[][] i2 = {{""},
+                            {"https://www.gis.tu-berlin.de/fileadmin/fg227/Bilder/Mitarbeiter/klein/javier.jpg"},
                             {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/wujanz.jpg"},
                             {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/weisbrich.jpg"},
                             {"",""},{"",""},{"","",""}};

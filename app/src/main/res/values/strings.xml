@@ -10,6 +10,8 @@
     <string name="weekend_lecture">No Lecture During Weekends&#8230;\n Keep Calm and Party Hard!</string>
     <string name="next_criterion">Select Next Criterion</string>
     <string name="select_criteria">Please Select Criteria</string>
+    <!--PersonGroupRow-->
+    <string name="dot">&#8226;</string>
     <!--WebPageActivity-->
     <string name="web_title_lsf">TU-LSF</string>
     <!--Menu-->

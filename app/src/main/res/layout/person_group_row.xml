@@ -24,6 +24,19 @@
         android:layout_marginLeft="65dp"
         android:layout_marginBottom="5dp" />
 
+    <TextView android:id="@+id/textEmail"
+        android:text="@string/dot"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="2dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textContactName" />
+
     <TextView android:id="@+id/textContactEmail"
         android:textSize="16sp"
         android:textColor="@color/colorAccent"
@@ -32,10 +45,19 @@
         android:layout_gravity="left"
         android:layout_alignParentRight="false"
         android:layout_alignParentEnd="false"
-        android:layout_marginLeft="75dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginBottom="2dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textContactName" />
+
+    <TextView android:id="@+id/textContact"
+        android:text="@string/dot"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_below="@+id/textContactEmail"
+        android:layout_marginLeft="70dp" />
 
     <TextView android:id="@+id/textContactNumber"
         android:textSize="16sp"
@@ -43,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_below="@+id/textContactEmail"
-        android:layout_marginLeft="75dp" />
+        android:layout_marginLeft="80dp" />
 
 
 </RelativeLayout>

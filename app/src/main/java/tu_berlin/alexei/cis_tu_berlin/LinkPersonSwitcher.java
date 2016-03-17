@@ -37,8 +37,18 @@ public class LinkPersonSwitcher {
                 _link[1] = "thomas.becker@tu-berlin.de";
                 _link[2] = "++493031424332";
                 break;
+            case "Sven Weisbrich":
+                _link[0] = "7267";
+                _link[1] = "s.weisbrich@tu-berlin.de";
+                _link[2] = "+493031423204";
+                break;
             case "Andreas Wichmann":
-                _link[0] = "9876";
+                _link[0] = "22701";
+                _link[1] = "andreas.wichmann@tu-berlin.de";
+                _link[2] = "+493031427503";
+                break;
+            case "Prof. Frank Neitzel":
+                _link[0] = "22701";
                 _link[1] = "andreas.wichmann@tu-berlin.de";
                 _link[2] = "+493031427503";
                 break;
