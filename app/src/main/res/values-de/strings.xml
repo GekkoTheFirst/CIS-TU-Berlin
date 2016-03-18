@@ -14,10 +14,10 @@
     <!--Spinners-->
     <string name="spinner_criteria">Wählen Kriterien:</string>
     <string name="spinner_student">Student</string>
-    <string name="spinner_academician">Akademiemitglied</string>
-    <string name="spinner_lec_today">Vorträge von Raum</string>
-    <string name="spinner_lec_room">Vorträge von Heute</string>
-    <string name="spinner_prof_room">Akademiemitglied von Raum</string>
+    <string name="spinner_academician">Institutsmitglieder</string>
+    <string name="spinner_lec_today">Vorträge nach Raum</string>
+    <string name="spinner_lec_room">Heutige Vorträge</string>
+    <string name="spinner_prof_room">Raumbelegurg nach Institutsmitglieder</string>
     <string name="spinner_phd_room">Ph.D von Raum</string>
     <!--WebPageActivity-->
     <string name="web_title_lsf">TU-LSF</string>
