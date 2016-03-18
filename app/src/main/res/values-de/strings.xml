@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--MainActivity-->
+    <string name="app_name">TU-CIS</string>
+    <string name="info_btn">Info verfügbar</string>
+    <string name="dec_vertical_dots">Mehr</string>
+    <!-- plus ThreeActivityDialogFragment-->
+    <string name="no_info">Nicht verfügbar</string>
+    <!--InfoDisplayActivity-->
+    <string name="btn_search">SUCHE</string>
+    <string name="weekend_lecture">Kein Vortrag während der Wochenenden&#8230;\n Keep Calm and Party Hard!</string>
+    <string name="next_criterion">Klicken Sie auf Weiter Criterion</string>
+    <string name="select_criteria">Wählen Kriterien Bitte</string>
+    <!--PersonGroupRow-->
+    <string name="dot">&#8226;</string>
+    <!--WebPageActivity-->
+    <string name="web_title_lsf">TU-LSF</string>
+    <!--Menu-->
+    <string name="ttl_legend">Legende</string>
+    <string name="ttl_find">Finden</string>
+    <!-- WiFi Dialog-->
+    <string name="dialog_title">Network Information</string>
+    <string name="dialog_wifi_text">Bitte schließen Sie \"eduroam\" WiFi Network.</string>
+    <string name="dialog_wifi_on">Öffnen</string>
+    <string name="dialong_wifi_off">Stornieren</string>
+    <!-- GPS Dialog-->
+    <string name="dialog_gps_text">Bitte aktivieren Sie GPS-Status.</string>
+    <string name="dialog_gps_on">Öffnen</string>
+    <string name="dialog_gps_off">Stornieren</string>
+    <!-- Select Dialog-->
+    <string name="choose_activity">Activity</string>
+    <string name="dialog_ok_btn">OK</string>
+    <string name="dialog_cancel">Schließen</string>
+    <!-- basemap menu items -->
+    <string name="baseMaps">Base-Karten</string>
+    <string name="streetMapMenu">Streets</string>
+    <string name="topoMenu">Topographic</string>
+    <string name="hybridMenu">Hybrid</string>
+    <string name="osmMenu">OpenStreetMap</string>
+    <!-- dynamic map service url -->
+    <string name="map_service_url">http://quader.igg.tu-berlin.de:6080/arcgis/rest/services/Vasko/NewMap_102_1108/MapServer</string>
+    <string name="text">TextView</string>
+</resources>
