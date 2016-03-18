@@ -18,7 +18,7 @@ public class LinkPersonSwitcher {
     public String[] getLink() {
         switch (link) {
             case "Hartmut Lehmann":
-                _link[0] = "1807";
+                _link[0] = "280";
                 _link[1] = "h.lehmann@tu-berlin.de";
                 _link[2] = "+493031427500";
                 break;
