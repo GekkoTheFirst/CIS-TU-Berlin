@@ -10,6 +10,12 @@
     <string name="weekend_lecture">No Lecture During Weekends&#8230;\n Keep Calm and Party Hard!</string>
     <string name="next_criterion">Select Next Criterion</string>
     <string name="select_criteria">Please Select Criteria</string>
+    <!--Spinners-->
+    <string name="spinner_criteria">Select Criteria:</string>
+    <string name="spinner_lec_today">Lectures by room</string>
+    <string name="spinner_lec_room">Lectures by today</string>
+    <string name="spinner_prof_room">Academicians by room</string>
+    <string name="spinner_phd_room">PhD by room</string>
     <!--PersonGroupRow-->
     <string name="dot">&#8226;</string>
     <!--WebPageActivity-->

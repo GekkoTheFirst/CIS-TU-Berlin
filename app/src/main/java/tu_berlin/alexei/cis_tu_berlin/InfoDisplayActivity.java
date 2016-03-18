@@ -66,21 +66,27 @@ public class InfoDisplayActivity extends AppCompatActivity {
         final ImageView chevron3 = (ImageView) findViewById(R.id.spinner_chevron3);
         chevron3.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
 
+        // Spinner Strings for multi-language support
+        String selectInput = getString(R.string.spinner_criteria);
+        String selectLecRoom = getString(R.string.spinner_lec_room);
+        String selectLecToday = getString(R.string.spinner_lec_today);
+        String selectProfRoom = getString(R.string.spinner_prof_room);
+        String selectPhDRoom = getString(R.string.spinner_phd_room);
         // First Criteria
         final Spinner spinnerMain = (Spinner) findViewById(R.id.spinnerMain);
-        String[] itemsRow_1 = new String[]{"Select Criteria:", "Student", "Academicians"};
+        String[] itemsRow_1 = new String[]{selectInput, "Student", "Academicians"};
         ArrayAdapter<String> adapterOne = new ArrayAdapter<String>(this, R.layout.spinner_layout, itemsRow_1);
         spinnerMain.setAdapter(adapterOne);
 
         // Second Criteria
         final Spinner spinnerSecondOne = (Spinner) findViewById(R.id.spinner_2_1);
-        String[] itemsRow_2_1 = new String[]{"Select Criteria:", "Lectures by room", "Lectures by today", "Academicians by room"};
+        String[] itemsRow_2_1 = new String[]{selectInput, selectLecRoom, selectLecToday, selectProfRoom};
         final Spinner spinnerSecondTwo = (Spinner) findViewById(R.id.spinner_2_2);
-        String[] itemsRow_2_2 = new String[]{"Select Criteria:", "Lectures by room", "Assistants by room", "PhD by room"};
+        String[] itemsRow_2_2 = new String[]{selectInput, selectLecRoom, selectProfRoom, selectPhDRoom};
 
         // Third Criteria
         final Spinner spinnerThirdOne = (Spinner) findViewById(R.id.spinner_3_1);
-        String[] itemsRow_3_1 = new String[]{"Select Criteria:", "GIS", "CV", "EGA", "SGN"};
+        String[] itemsRow_3_1 = new String[]{selectInput, "GIS", "CV", "EGA", "SGN"};
 
         ArrayAdapter<String> adapterTwoOne = new ArrayAdapter<String>(this, R.layout.spinner_layout, itemsRow_2_1);
         spinnerSecondOne.setAdapter(adapterTwoOne);

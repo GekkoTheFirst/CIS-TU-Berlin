@@ -11,8 +11,12 @@
     <string name="weekend_lecture">Kein Vortrag während der Wochenenden&#8230;\n Keep Calm and Party Hard!</string>
     <string name="next_criterion">Klicken Sie auf Weiter Criterion</string>
     <string name="select_criteria">Wählen Kriterien Bitte</string>
-    <!--PersonGroupRow-->
-    <string name="dot">&#8226;</string>
+    <!--Spinners-->
+    <string name="spinner_criteria">Wählen Kriterien:</string>
+    <string name="spinner_lec_today">Vorträge von Raum</string>
+    <string name="spinner_lec_room">Vorträge von heute</string>
+    <string name="spinner_prof_room">Academicians von Raum</string>
+    <string name="spinner_phd_room">PhD von Raum</string>
     <!--WebPageActivity-->
     <string name="web_title_lsf">TU-LSF</string>
     <!--Menu-->
