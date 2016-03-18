@@ -18,7 +18,7 @@
     <string name="spinner_lec_today">Vorträge nach Raum</string>
     <string name="spinner_lec_room">Heutige Vorträge</string>
     <string name="spinner_prof_room">Raumbelegurg nach Institutsmitglieder</string>
-    <string name="spinner_phd_room">Ph.D von Raum</string>
+    <string name="spinner_phd_room">Raumbelegurg nach Ph.D</string>
     <!--WebPageActivity-->
     <string name="web_title_lsf">TU-LSF</string>
     <!--Menu-->
