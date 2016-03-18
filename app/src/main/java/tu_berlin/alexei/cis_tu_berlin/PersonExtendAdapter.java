@@ -87,12 +87,16 @@ public class PersonExtendAdapter extends BaseExpandableListAdapter {
         textView = (TextView) convertView.findViewById(R.id.textContactNumber);
         textView.setText(child3.get(childPosition));
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageContactView);
+        ImageView imageRoundView = (ImageView) convertView.findViewById(R.id.imageRoundView);
 
         // Checks if there is no img link, it loads default png. Otherwise it loads img from the Internet
-        if(child4.get(childPosition).equals("")) {
+        if(child4.get(childPosition).equals("noImg")) {
             imageView.setImageResource(R.drawable.account_box_outline48);
+            imageRoundView.setVisibility(View.GONE);
         } else {
             new DownloadImageTask(imageView).execute(child4.get(childPosition));
+            imageRoundView.setImageResource(R.drawable.round_img);
+            imageRoundView.setVisibility(View.VISIBLE);
         }
         final Context context = parent.getContext();
         final FragmentManager fm = ((Activity) context).getFragmentManager();

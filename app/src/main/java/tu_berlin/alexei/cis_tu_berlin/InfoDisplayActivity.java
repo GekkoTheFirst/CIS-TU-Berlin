@@ -68,13 +68,16 @@ public class InfoDisplayActivity extends AppCompatActivity {
 
         // Spinner Strings for multi-language support
         String selectInput = getString(R.string.spinner_criteria);
+        String selectStudent = getString(R.string.spinner_student);
+        String selectAcademician = getString(R.string.spinner_academician);
         String selectLecRoom = getString(R.string.spinner_lec_room);
         String selectLecToday = getString(R.string.spinner_lec_today);
         String selectProfRoom = getString(R.string.spinner_prof_room);
         String selectPhDRoom = getString(R.string.spinner_phd_room);
+
         // First Criteria
         final Spinner spinnerMain = (Spinner) findViewById(R.id.spinnerMain);
-        String[] itemsRow_1 = new String[]{selectInput, "Student", "Academicians"};
+        String[] itemsRow_1 = new String[]{selectInput, selectStudent, selectAcademician};
         ArrayAdapter<String> adapterOne = new ArrayAdapter<String>(this, R.layout.spinner_layout, itemsRow_1);
         spinnerMain.setAdapter(adapterOne);
 

@@ -47,7 +47,7 @@ public class GetInfoPersonChain {
                     String[][] t3 = {{"+4930 314-24332"},
                             {"+4930 314-29498"}};
                     String[][] i3 = {{"http://www.gis.tu-berlin.de/fileadmin/fg227/Bilder/Mitarbeiter/gross/becker.jpg"},
-                            {""}};
+                            {"noImg"}};
                     AddChildToParent three = new AddChildToParent();
                     setChildToParent(three, r3, n3, e3, t3, i3);
                     break;
@@ -56,7 +56,7 @@ public class GetInfoPersonChain {
                     String[][] n4 = {{"Prof. Jürgen Oberst"}};
                     String[][] e4 = {{"juergen.oberst@tu-berlin.de"}};
                     String[][] t4 = {{"+4930 314-79701"}};
-                    String[][] i4 = {{""}};
+                    String[][] i4 = {{"noImg"}};
                     AddChildToParent four = new AddChildToParent();
                     setChildToParent(four, r4, n4, e4, t4, i4);
                     break;
@@ -133,9 +133,9 @@ public class GetInfoPersonChain {
                     String[][] i2 = {{"https://www.gis.tu-berlin.de/fileadmin/fg227/Bilder/Mitarbeiter/klein/1632_c.jpg"},
                             {"https://www.gis.tu-berlin.de/fileadmin/fg227/Bilder/Mitarbeiter/klein/javier.jpg"},
                             {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/wujanz.jpg"},
-                            {"","","",""},
+                            {"noImg","noImg","noImg","noImg"},
                             {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/weisbrich.jpg"},
-                            {"",""},{"",""},{"",""},{"","",""}};
+                            {"noImg","noImg"},{"noImg","noImg"},{"noImg","noImg"},{"noImg","noImg","noImg"}};
                     AddChildToParent two = new AddChildToParent();
                     setChildToParent(two, r2, n2, e2, t2, i2);
                     break;
@@ -144,7 +144,7 @@ public class GetInfoPersonChain {
                     String[][] n3 = {{"Marija Čokrlić", "Kinga Węzka"}};
                     String[][] e3 = {{"maria@tu-berlin.de", "kinga@tu-berlin.de"}};
                     String[][] t3 = {{"maria", "kinga"}};
-                    String[][] i3 = {{"",""}};
+                    String[][] i3 = {{"noImg","noImg"}};
                     AddChildToParent three = new AddChildToParent();
                     setChildToParent(three, r3, n3, e3, t3, i3);
                     break;
@@ -153,7 +153,7 @@ public class GetInfoPersonChain {
                     String[][] n4 = {{"Prof. Frank Neitzel"}, {""}};
                     String[][] e4 = {{"neitzel@tu-belin.de"}, {""}};
                     String[][] t4 = {{"prof"}, {""}};
-                    String[][] i4 = {{""},{""}};
+                    String[][] i4 = {{"noImg"},{"noImg"}};
                     AddChildToParent four = new AddChildToParent();
                     setChildToParent(four, r4, n4, e4, t4, i4);
                     break;
@@ -162,7 +162,7 @@ public class GetInfoPersonChain {
                     String[][] n5 = {{""}};
                     String[][] e5 = {{""}};
                     String[][] t5 = {{""}};
-                    String[][] i5 = {{""}};
+                    String[][] i5 = {{"noImg"}};
                     AddChildToParent five = new AddChildToParent();
                     setChildToParent(five, r5, n5, e5, t5, i5);
                     break;
@@ -176,7 +176,7 @@ public class GetInfoPersonChain {
                     setChildToParent(six, r6, n6, e6, t6, i6);
                     break;
             }
-        } else if(numberOfPerson == 10){ // Only Academicians 
+        } else if(numberOfPerson == 10){ // Only Academicians
             switch (indexZone) {
                 case 1:
                     String[] r1 = {"H6133"};
@@ -209,7 +209,7 @@ public class GetInfoPersonChain {
                             {"https://www.gis.tu-berlin.de/fileadmin/fg227/Bilder/Mitarbeiter/klein/javier.jpg"},
                             {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/wujanz.jpg"},
                             {"http://www.geodesy.tu-berlin.de/fileadmin/fg261/Bilder/weisbrich.jpg"},
-                            {"",""},{"",""},{"","",""}};
+                            {"noImg","noImg"},{"noImg","noImg"},{"noImg","noImg","noImg"}};
                     AddChildToParent two = new AddChildToParent();
                     setChildToParent(two, r2, n2, e2, t2, i2);
                     break;
@@ -269,7 +269,7 @@ public class GetInfoPersonChain {
                             {"anastasios.margonis@tu-berlin.de", "ender.tasdelen@tu-berlin.de"}};
                     String[][] t2 = {{"+4930 314-24147", "+4930 314-24147", "+4930 314-24147", "+4930 314-24147"},
                             {"+4930 314-29897", "+4930 314-29897"}};
-                    String[][] i2 = {{"","","",""},{"",""}};
+                    String[][] i2 = {{"noImg","noImg","noImg","noImg"},{"noImg","noImg"}};
                     AddChildToParent two = new AddChildToParent();
                     setChildToParent(two, r2, n2, e2, t2, i2);
                     break;
@@ -278,7 +278,7 @@ public class GetInfoPersonChain {
                     String[][] n3 = {{"Maria Cockric", "Kinga"}};
                     String[][] e3 = {{"maria@tu-berlin.de", "kinga@tu-berlin.de"}};
                     String[][] t3 = {{"maria", "kinga"}};
-                    String[][] i3 = {{"",""}};
+                    String[][] i3 = {{"noImg","noImg"}};
                     AddChildToParent three = new AddChildToParent();
                     setChildToParent(three, r3, n3, e3, t3, i3);
                     break;
