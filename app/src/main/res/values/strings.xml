@@ -3,11 +3,14 @@
     <string name="app_name">TU-CIS</string>
     <string name="info_btn">Info available</string>
     <string name="dec_vertical_dots">More</string>
-    <!-- plus ThreeActivityDialogFragment-->
+    <!-- ThreeActivityDialogFragment-->
     <string name="no_info">Not Available</string>
-    <string name="visit_web">Visit LSF website</string>
+    <string name="visit_web">Visit LSF web page</string>
     <string name="write_email">Write e-mail</string>
     <string name="make_call">Make call</string>
+    <!--Write e-mail-->
+    <string name="email_subject">Email Subject</string>
+    <string name="email_body">Message Body</string>
     <!--InfoDisplayActivity-->
     <string name="btn_search">SEARCH</string>
     <string name="weekend_lecture">No Lecture During Weekends&#8230;\n Keep Calm and Party Hard!</string>

@@ -6,9 +6,12 @@
     <string name="dec_vertical_dots">Mehr</string>
     <!-- plus ThreeActivityDialogFragment-->
     <string name="no_info">Nicht verfügbar</string>
-    <string name="visit_web">Besuche die LSF Website</string>
+    <string name="visit_web">Besuchen LSF Website</string>
     <string name="write_email">E-Mail schreiben</string>
     <string name="make_call">Anrufen</string>
+    <!--Write e-mail-->
+    <string name="email_subject">E-Mail Betreff</string>
+    <string name="email_body">Nachrichtentext</string>
     <!--InfoDisplayActivity-->
     <string name="btn_search">SUCHE</string>
     <string name="weekend_lecture">Kein Vortrag während der Wochenenden&#8230;\n Keep Calm and Party Hard!</string>

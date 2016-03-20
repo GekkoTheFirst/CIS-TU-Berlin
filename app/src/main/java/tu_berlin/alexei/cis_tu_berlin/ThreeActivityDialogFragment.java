@@ -16,26 +16,20 @@ import android.widget.Toast;
  * Created by Alexei on 27.01.2016.
  */
 public class ThreeActivityDialogFragment extends DialogFragment{
-    private String oneList = getString(R.string.visit_web);
-    private String twoList = getString(R.string.write_email);
-    private String threeList = getString(R.string.make_call);
-    final private String[] list = {oneList, twoList, threeList};
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        String[] listActivities = {getString(R.string.visit_web), getString(R.string.write_email), getString(R.string.make_call)};
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.choose_activity)
-                .setItems(list, new DialogInterface.OnClickListener() {
+                .setItems(listActivities, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichCase) {
-                        //Toast.makeText(getActivity(), String.valueOf(which), Toast.LENGTH_LONG).show();
-
-                        Context context = (InfoDisplayActivity) getActivity();
-                        //Context context = PersonExtendAdapter.CNTXT;
                         switch (whichCase) {
                             case 0:
                                 if(PersonExtendAdapter.webPersonPAGE != null) {
-                                    Intent webPage = new Intent(context, WebPersonPageActivity.class);
-                                    context.startActivity(webPage);
+                                    Intent webPage = new Intent(getActivity(), WebPersonPageActivity.class);
+                                    getActivity().startActivity(webPage);
                                 } else {
                                     dismiss();
                                     Toast.makeText(getActivity().getApplication(),  R.string.no_info, Toast.LENGTH_SHORT).show();
@@ -45,9 +39,9 @@ public class ThreeActivityDialogFragment extends DialogFragment{
                                 String eMail =  PersonExtendAdapter.EMAIL;
                                 if(eMail != null){
                                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", eMail, null));
-                                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Email Subject");
-                                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Message Body");
-                                    startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
+                                    emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
+                                    startActivity(Intent.createChooser(emailIntent, "Sending..."));
                                 } else {
                                     dismiss();
                                     Toast.makeText(getActivity().getApplication(),  R.string.no_info, Toast.LENGTH_SHORT).show();
@@ -56,7 +50,7 @@ public class ThreeActivityDialogFragment extends DialogFragment{
                             case 2:
                                 String number = PersonExtendAdapter.PHONE;
                                 if(number != null) {
-                                    PackageManager packageManager = context.getPackageManager();
+                                    PackageManager packageManager = getActivity().getPackageManager();
                                     if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
                                         //call phone
                                         Intent intent = new Intent(Intent.ACTION_CALL);
@@ -67,8 +61,6 @@ public class ThreeActivityDialogFragment extends DialogFragment{
                                     dismiss();
                                     Toast.makeText(getActivity().getApplication(),  R.string.no_info, Toast.LENGTH_SHORT).show();
                                 }
-                                /*Intent makeCall = new Intent(Intent.ACTION_CALL, Uri.fromParts("telephone", PersonExtendAdapter.PHONE, null));
-                                startActivity(makeCall);*/
                                 break;
                             default:
                                 dismiss();
