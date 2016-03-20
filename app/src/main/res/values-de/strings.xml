@@ -22,7 +22,7 @@
     <!--WebPageActivity-->
     <string name="web_title_lsf">TU-LSF</string>
     <!--Menu-->
-    <string name="ttl_legend">Legende:</string>
+    <string name="ttl_legend">Legende</string>
     <string name="ttl_find">Finden</string>
     <!-- WiFi Dialog-->
     <string name="dialog_title">Network Information</string>
