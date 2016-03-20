@@ -16,7 +16,10 @@ import android.widget.Toast;
  * Created by Alexei on 27.01.2016.
  */
 public class ThreeActivityDialogFragment extends DialogFragment{
-    final private String[] list = {"Visit web page", "Write e-mail", "Make call"};
+    private String oneList = getString(R.string.visit_web);
+    private String twoList = getString(R.string.write_email);
+    private String threeList = getString(R.string.make_call);
+    final private String[] list = {oneList, twoList, threeList};
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

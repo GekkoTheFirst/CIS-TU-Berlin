@@ -5,6 +5,9 @@
     <string name="dec_vertical_dots">More</string>
     <!-- plus ThreeActivityDialogFragment-->
     <string name="no_info">Not Available</string>
+    <string name="visit_web">Visit website</string>
+    <string name="write_email">Write e-mail</string>
+    <string name="make_call">Make call</string>
     <!--InfoDisplayActivity-->
     <string name="btn_search">SEARCH</string>
     <string name="weekend_lecture">No Lecture During Weekends&#8230;\n Keep Calm and Party Hard!</string>
