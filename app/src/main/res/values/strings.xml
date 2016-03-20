@@ -14,8 +14,8 @@
     <string name="spinner_criteria">Select Criteria:</string>
     <string name="spinner_student">Student</string>
     <string name="spinner_academician">Academician</string>
-    <string name="spinner_lec_today">Lectures by room</string>
-    <string name="spinner_lec_room">Lectures by today</string>
+    <string name="spinner_lec_today">Lectures by today</string>
+    <string name="spinner_lec_room">Lectures by room</string>
     <string name="spinner_prof_room">Academicians by room</string>
     <string name="spinner_phd_room">Ph.D by room</string>
     <!--PersonGroupRow-->
