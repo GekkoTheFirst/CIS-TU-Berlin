@@ -23,13 +23,18 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -53,8 +58,20 @@ public class LegendDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mLinearLayout = (LinearLayout) inflater.inflate(R.layout.legend_dialog_fragment_layout, null);
 
-        getDialog().setTitle(getActivity().getString(R.string.ttl_legend));
+        // NO Legend Title
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
+        // Close Image Button
+        ImageButton buttonLegend = (ImageButton) mLinearLayout.findViewById(R.id.cls_button);
+        buttonLegend.setImageResource(R.drawable.close);
+        buttonLegend.setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+        buttonLegend.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // When button is clicked, call up to owning activity.
+                dismiss();
+            }
+        });
+        //closeBtn(b);
         //mLayer = new ArcGISDynamicMapServiceLayer(getResources().getString(R.string.map_service_url));
         mLayer = ((MainActivity) getActivity()).getLayer();
 
@@ -131,8 +148,9 @@ public class LegendDialogFragment extends DialogFragment {
 
             for (ArcGISLayerInfo layerInfo : mLayer.getLayers()) {
                 View view = getActivity().getLayoutInflater().inflate(R.layout.layer_legend_layout, null);
-                populateLegendView(view, layerInfo);
-
+                if (layerInfo.isVisible() == true){
+                    populateLegendView(view, layerInfo);
+                }
                 mLinearLayout.addView(view);
             }
         }
