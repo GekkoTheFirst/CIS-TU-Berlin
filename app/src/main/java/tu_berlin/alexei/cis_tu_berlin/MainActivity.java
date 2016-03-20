@@ -230,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
                     // Render right floor based on MAC ADDRESS and Coordinates
                     // Test
+                    // IF you wanna run release version -> comment next lines and uncomment release function
                     INDEX = 2;
                     getFloorByMac(INDEX, mMapView, FAKE, rssiMac);
                     //TextView itemLoco = (TextView) findViewById(R.id.textLocation);
