@@ -61,12 +61,13 @@ public class MainActivity extends AppCompatActivity {
         }
         double latitude = locationMgr.getLat(this); //this
         double longitude = locationMgr.getLong(this); //this getApplicationContext()
+        GPSDialogFragment gps = new GPSDialogFragment();
 
         // Order Lat Lon && Lat Lon
         if(latitude < 0 && longitude < 0) {
-            //gps.checkGPSStatus();
+            //Log.i("test","result = "+longitude" "+latitude);
+            gps.checkGPSStatus();
         } else if((latitude > 52.511874 && longitude > 13.325517) && (latitude < 52.512440 && longitude < 13.326027)){
-            //Log.i("test"," result = "+longitude);
             // Zone 1 (left side of left part)
             INDEX = 1;
         } else if((latitude > 52.511906 && longitude > 13.326167) && (latitude < 52.512450 && longitude < 13.326585)){
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     private void getFloorByMac(int index, MapView x, String s, int i) {
         // MAC ADDRESS of the floors Fl - Floor L - Left, M - Middle, R - Right
         // 6th
-        String BSSID6FlLL = "a0:cf:5b:3d:dd:62";
+        String BSSID6FlLL = "a0:cf:5b:3d:df:32";
         String BSSID6FlLR = "a0:cf:5b:3d:dd:62"; // !?
         String BSSID6FlML = "a0:cf:5b:fa:43:e2"; // !?
         String BSSID6FlMR = "a0:cf:5b:3d:de:12";
@@ -223,35 +224,37 @@ public class MainActivity extends AppCompatActivity {
                 //if(wifiIsConnected()) {
                 //    checkWifiStatus();
                 //} else {
-                    // Display your position
-                    getPosition(mMapView);
+                // Display your position
+                getPosition(mMapView);
 
-                    // If WiFi is connected, MacAddress will be obtained and map will be shown
-                    String wifiMac = TUUtils.getBBSID(getApplicationContext());
-                    int rssiMac = TUUtils.getRssi(getApplicationContext());
-                    int index = findIndex();
+                // If WiFi is connected, MacAddress will be obtained and map will be shown
+                String ssid = TUUtils.getSSID(getApplicationContext());
+                String wifiMac = TUUtils.getBBSID(getApplicationContext());
+                int rssiMac = TUUtils.getRssi(getApplicationContext());
+                int index = findIndex();
 
-                    // Render right floor based on MAC ADDRESS and Coordinates
-                    // Test
-                    // IF you wanna run release version -> comment next lines and uncomment release function
-                    //INDEX = 2;
-                    //getFloorByMac(INDEX, mMapView, FAKE, rssiMac);
-                    //TextView itemLoco = (TextView) findViewById(R.id.textLocation);
-                    //itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext()) + "Lat: " + LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext()));
+                // Render right floor based on MAC ADDRESS and Coordinates
+                // IF you wanna run release version -> comment next lines and uncomment release function
+                // Test
+                //INDEX = 2;
+                //getFloorByMac(INDEX, mMapView, FAKE, rssiMac);
+                //TextView itemLoco = (TextView) findViewById(R.id.textLocation);
+                //itemLoco.setText("Rssi: " + rssiMac + " BBSID: " + wifiMac + " Lon: " + LocationMgr.getInstance(getApplicationContext()).getLong(getApplicationContext()) + "Lat: " + LocationMgr.getInstance(getApplicationContext()).getLat(getApplicationContext()));
 
-                    // Release
+                // Release
+                if (ssid.equals("\"eduroam\"")){
                     getFloorByMac(index, mMapView, wifiMac, rssiMac);
-                //}
+                } else {
+                    checkWifiStatus();
+                }
             }
         });
 
         // Set a listener for map status changes; this will be called when switching basemaps.
         mMapView.setOnStatusChangedListener(new OnStatusChangedListener() {
-
             private static final long serialVersionUID = 1L;
 
             public void onStatusChanged(Object source, STATUS status) {
-
                 // Set the map extent once the map has been initialized, and the basemap is added or changed;
                 if (STATUS.LAYER_LOADED == status) {
                     mMapView.setExtent(mCurrentMapExtent);
