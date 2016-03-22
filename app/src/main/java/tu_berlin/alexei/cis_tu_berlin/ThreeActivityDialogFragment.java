@@ -41,7 +41,7 @@ public class ThreeActivityDialogFragment extends DialogFragment{
                                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", eMail, null));
                                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
                                     emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
-                                    startActivity(Intent.createChooser(emailIntent, "Sending..."));
+                                    startActivity(Intent.createChooser(emailIntent, "Complete action using"));
                                 } else {
                                     dismiss();
                                     Toast.makeText(getActivity().getApplication(),  R.string.no_info, Toast.LENGTH_SHORT).show();
