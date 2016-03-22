@@ -53,7 +53,7 @@ public class ThreeActivityDialogFragment extends DialogFragment{
                                     PackageManager packageManager = getActivity().getPackageManager();
                                     if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
                                         //call phone
-                                        Intent intent = new Intent(Intent.ACTION_CALL);
+                                        Intent intent = new Intent(Intent.ACTION_DIAL);
                                         intent.setData(Uri.parse("tel:" + number));
                                         startActivity(intent);
                                     }
