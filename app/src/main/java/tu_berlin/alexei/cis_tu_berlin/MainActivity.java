@@ -126,24 +126,24 @@ public class MainActivity extends AppCompatActivity {
     private void getFloorByMac(int index, MapView x, String s, int i) {
         // MAC ADDRESS of the floors Fl - Floor L - Left, M - Middle, R - Right
         // 6th
-        String BSSID6FlLL = "a0:cf:5b:0e:35:52";
-        String BSSID6FlLR = "a0:cf:5b:fa:43:e2";
-        //String BSSID6FlLR = "a0:cf:5b:3d:dd:62"; // !?
-        String BSSID6FlML = "a0:cf:5b:3f:eb:02"; // !?
-        String BSSID6FlMR = "a0:cf:5b:3f:da:f2";
+        String BSSID6FlLL = "a0:cf:5b:3d:dd:62";
+        String BSSID6FlLR = "a0:cf:5b:3d:dd:62"; // !?
+        String BSSID6FlML = "a0:cf:5b:fa:43:e2"; // !?
+        String BSSID6FlMR = "a0:cf:5b:3d:de:12";
+        String BSSID6FlRR = "a0:cf:5b:3d:e1:42";
         // 5th
-        String BSSID5FlLL = "a0:cf:5b:3d:df:32";
-        String BSSID5FlLR = "a0:cf:5b:3d:dd:62"; // ?!
+        String BSSID5FlLL; // No Receiver
+        String BSSID5FlLR;  // No Receiver
         String BSSID5FlML = "a0:cf:5b:3f:eb:02"; // ?!
-        String BSSID5FlMR = "a0:cf:5b:0e:34:72"; // ?!
+        String BSSID5FlMR = "64:ae:0c:c5:e7:92"; // ?!
 
         switch (index) {
             case 1:
-                if (s.equals(BSSID5FlLL) || s.equals(BSSID5FlLR) || s.equals(BSSID5FlMR)) {
+                if (s.equals(BSSID5FlML) || s.equals(BSSID5FlMR)) {
                     getHBuildingFloor(x, 5);
                     getInfoButton();
                     FLOOR = 5;
-                } else if (s.equals(BSSID6FlLL) || s.equals(BSSID6FlLR) || s.equals(FAKE)) {
+                } else if (s.equals(BSSID6FlLL) || s.equals(BSSID6FlLR) || s.equals(BSSID6FlML) || s.equals(FAKE)) {
                     getHBuildingFloor(x, 6);
                     getInfoButton();
                     FLOOR = 6;
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case 2:
-                if (s.equals(BSSID5FlLL) || s.equals(BSSID5FlLR) || s.equals(BSSID5FlML) || s.equals(BSSID5FlMR)) {
+                if (s.equals(BSSID5FlML) || s.equals(BSSID5FlMR)) {
                     getHBuildingFloor(x, 5);
                     getInfoButton();
                     FLOOR = 5;
@@ -160,11 +160,11 @@ public class MainActivity extends AppCompatActivity {
                     getHBuildingFloor(x, 6);
                     getInfoButton();
                     FLOOR = 6;
-                } else if(s.equals(BSSID6FlLR) && i > -69) {
+                } else if (s.equals(BSSID6FlLR) && i > -66) {
                     getHBuildingFloor(x, 6);
                     getInfoButton();
                     FLOOR = 6;
-                } else if (s.equals(BSSID6FlLR) && i < -69){
+                } else if (s.equals(BSSID6FlLR) && i < -66) {
                     getHBuildingFloor(x, 5);
                     getInfoButton();
                     FLOOR = 5;
@@ -174,17 +174,20 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case 3:
-                if (s.equals(BSSID5FlLR) || s.equals(BSSID5FlML) || s.equals(BSSID5FlMR)) {
+                if (s.equals(BSSID5FlML) || s.equals(BSSID5FlMR)) {
                     getHBuildingFloor(x, 5);
                     getInfoButton();
                     FLOOR = 5;
+                } else if(s.equals(BSSID6FlML) || s.equals(BSSID6FlMR) || s.equals(BSSID6FlRR)) {
+                    getHBuildingFloor(x, 6);
+                    getInfoButton();
+                    FLOOR = 6;
                 } else {
                     Toast.makeText(getApplicationContext(), "OUT OF AREA #3", Toast.LENGTH_SHORT).show();
-                    //getInfoButton();
                 }
                 break;
             default:
-                Toast.makeText(getApplicationContext(), "Out of Area", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "OUT OF GEOFENCING", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
