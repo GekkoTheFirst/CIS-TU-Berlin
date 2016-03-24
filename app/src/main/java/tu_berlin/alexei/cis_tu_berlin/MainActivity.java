@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private final MapOptions mHybridBasemap = new MapOptions(MapOptions.MapType.HYBRID);
     private final MapOptions mOSMBasemap = new MapOptions(MapOptions.MapType.OSM);
 
+    // Apply INDEX based on Lat & Long (geofencing)
     private int findIndex(){
         LocationMgr locationMgr = LocationMgr.getInstance(this);
         if(locationMgr == null){
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         // Order Lat Lon && Lat Lon
         if(latitude < 0 && longitude < 0) {
             //Log.i("test","result = "+longitude" "+latitude);
-            gps.checkGPSStatus();
+            checkGPSStatus();
         } else if((latitude > 52.511874 && longitude > 13.325517) && (latitude < 52.512440 && longitude < 13.326027)){
             // Zone 1 (left side of left part)
             INDEX = 1;
@@ -93,7 +94,14 @@ public class MainActivity extends AppCompatActivity {
         return INDEX;
     }
 
+    // Chack GPS status and launch GPS Dialog Fragment
+    public void checkGPSStatus(){
+        FragmentManager fm = getFragmentManager();
+        DialogFragment gpsAlert = new GPSDialogFragment();
+        gpsAlert.show(fm, "GPSDialogFragment");
+    }
 
+    // Load specific map layer from ArcGIS server
     private void getHBuildingFloor(MapView mapView, int floorID) {
         switch (floorID) {
             case 100: // H contour
@@ -123,7 +131,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Test BSSID
     private String FAKE = "01:80:c2:00:00:03";
+    // Show right layer based on BSSID of WiFi routers
     private void getFloorByMac(int index, MapView x, String s, int i) {
         // MAC ADDRESS of the floors Fl - Floor L - Left, M - Middle, R - Right
         // 6th

@@ -18,13 +18,6 @@ import android.support.v7.app.AlertDialog;
 public class GPSDialogFragment extends DialogFragment {
 
     public GPSDialogFragment(){
-
-    }
-
-    public void checkGPSStatus(){
-        FragmentManager fm = getFragmentManager();
-        DialogFragment gpsAlert = new GPSDialogFragment();
-        gpsAlert.show(fm, "GPSDialogFragment");
     }
 
     @Override

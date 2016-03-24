@@ -36,7 +36,7 @@
     <string name="dialog_wifi_on">Öffnen</string>
     <string name="dialong_wifi_off">Stornieren</string>
     <!-- GPS Dialog-->
-    <string name="dialog_gps_text">Bitte aktivieren Sie GPS-Status.</string>
+    <string name="dialog_gps_text">Bitte aktivieren GPS.</string>
     <string name="dialog_gps_on">Öffnen</string>
     <string name="dialog_gps_off">Stornieren</string>
     <!-- Select Dialog-->

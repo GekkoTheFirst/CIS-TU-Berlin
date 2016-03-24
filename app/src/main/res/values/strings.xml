@@ -37,7 +37,7 @@
     <string name="dialog_wifi_on">Open</string>
     <string name="dialong_wifi_off">Cancel</string>
     <!-- GPS Dialog-->
-    <string name="dialog_gps_text">Please enable GPS status.</string>
+    <string name="dialog_gps_text">Please enable GPS.</string>
     <string name="dialog_gps_on">Open</string>
     <string name="dialog_gps_off">Cancel</string>
     <!-- Select Dialog-->
