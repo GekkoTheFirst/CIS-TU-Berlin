@@ -41,7 +41,7 @@ public class ThreeActivityDialogFragment extends DialogFragment{
                                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", eMail, null));
                                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
                                     emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
-                                    startActivity(Intent.createChooser(emailIntent, "Sending..."));
+                                    startActivity(Intent.createChooser(emailIntent, "Complete action using"));
                                 } else {
                                     dismiss();
                                     Toast.makeText(getActivity().getApplication(),  R.string.no_info, Toast.LENGTH_SHORT).show();
@@ -53,7 +53,7 @@ public class ThreeActivityDialogFragment extends DialogFragment{
                                     PackageManager packageManager = getActivity().getPackageManager();
                                     if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
                                         //call phone
-                                        Intent intent = new Intent(Intent.ACTION_CALL);
+                                        Intent intent = new Intent(Intent.ACTION_DIAL);
                                         intent.setData(Uri.parse("tel:" + number));
                                         startActivity(intent);
                                     }
