@@ -25,7 +25,7 @@
     <string name="spinner_prof_room">Academicians by room</string>
     <string name="spinner_phd_room">Ph.D by room</string>
     <!--PersonGroupRow-->
-    <string name="dot">&#8226;</string>
+    <string name="dot" translatable="false">&#8226;</string>
     <!--WebPageActivity-->
     <string name="web_title_lsf">TU-LSF</string>
     <!--Menu-->
